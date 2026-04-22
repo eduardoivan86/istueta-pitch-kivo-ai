@@ -4,10 +4,12 @@ import { Check } from "lucide-react";
 const tiers = [
   {
     name: "Foundation",
-    setup: "$3,500",
-    monthly: "$2,500",
+    setup: "$1,500",
+    monthly: "$600",
     recommended: true,
     feats: [
+      "500 minutes/month included",
+      "Additional minutes at $0.50/min",
       "Inbound bilingual voice agent",
       "Form callback automation",
       "Weekly dashboard",
@@ -126,18 +128,18 @@ export const InversionSection = () => {
             <p>Current exposure:{" "}
               <span className="text-destructive font-bold">~$41,000/mo</span> in cost + lost revenue
             </p>
-            <p className="mt-3">With Kivo Foundation ($2,500/mo):</p>
+            <p className="mt-3">With Kivo Foundation ($600/mo + usage):</p>
             <p>  Revenue recovered:{" "}
               <span className="text-primary font-bold">~$36,450/mo</span> (conservative)
             </p>
             <p>  Net monthly impact:{" "}
-              <span className="text-success font-bold">+$33,950</span> to P&L
+              <span className="text-success font-bold">+$35,850</span> to P&L
             </p>
             <p className="mt-3">Break-even:{" "}
               <span className="text-success font-bold">Month 1</span>
             </p>
             <p>Annualized, conservative:{" "}
-              <span className="text-primary font-bold">+$400K/yr</span>
+              <span className="text-primary font-bold">+$430K/yr</span>
             </p>
             <p>Annualized, realistic:{" "}
               <span className="text-primary font-bold">+$800K – $1.2M/yr</span>
