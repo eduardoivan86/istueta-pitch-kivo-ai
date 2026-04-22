@@ -1,45 +1,152 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Mic, PhoneOff } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
-import { useVapi } from "@/hooks/useVapi";
+import type VapiType from "@vapi-ai/web";
+import {
+  ASSISTANT_ID,
+  VAPI_PUBLIC_KEY,
+  describeVapiError,
+  type VoiceStatus,
+} from "@/lib/vapi";
 
-const VAPI_ASSISTANT_ID = "df02ceb7-32b2-4a71-9ff5-d9c22edc9f68";
-const VAPI_PUBLIC_KEY = import.meta.env.VITE_VAPI_PUBLIC_KEY as string | undefined;
+type Phase = "idle" | "active" | "fallback";
+type FallbackReason = "error" | "ended";
 
 export const VoiceOrbSection = () => {
-  const { state, volumeLevel, isAssistantSpeaking, errorMessage, toggleCall } = useVapi({
-    assistantId: VAPI_ASSISTANT_ID,
-    publicKey: VAPI_PUBLIC_KEY,
-  });
-
+  const [phase, setPhase] = useState<Phase>("idle");
+  const [voiceStatus, setVoiceStatus] = useState<VoiceStatus>("connecting");
+  const [fallbackReason, setFallbackReason] = useState<FallbackReason>("ended");
+  const [errorDetail, setErrorDetail] = useState<string>("");
+  const [volumeLevel, setVolumeLevel] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  const vapiRef = useRef<VapiType | null>(null);
+  const phaseRef = useRef(phase);
+  phaseRef.current = phase;
+
   useEffect(() => {
     setPrefersReducedMotion(
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
     );
   }, []);
 
-  const isActive = state === "active";
-  const isConnecting = state === "connecting";
+  useEffect(() => {
+    return () => {
+      if (vapiRef.current) {
+        vapiRef.current.stop();
+        vapiRef.current = null;
+      }
+    };
+  }, []);
+
+  const goToFallback = useCallback((reason: FallbackReason) => {
+    setFallbackReason(reason);
+    setPhase("fallback");
+    setVolumeLevel(0);
+    setTimeout(() => setPhase("idle"), reason === "error" ? 3000 : 1500);
+  }, []);
+
+  const startConversation = useCallback(async () => {
+    if (phaseRef.current === "active") return;
+
+    if (!VAPI_PUBLIC_KEY || !ASSISTANT_ID) {
+      setErrorDetail("Vapi config missing");
+      goToFallback("error");
+      return;
+    }
+
+    setPhase("active");
+    setVoiceStatus("connecting");
+    setErrorDetail("");
+
+    try {
+      const Vapi = (await import("@vapi-ai/web")).default;
+      const vapi = new Vapi(VAPI_PUBLIC_KEY);
+      vapiRef.current = vapi;
+
+      vapi.on("call-start", () => {
+        setVoiceStatus("listening");
+      });
+
+      vapi.on("speech-start", () => {
+        setVoiceStatus("speaking");
+      });
+
+      vapi.on("speech-end", () => {
+        setVoiceStatus("listening");
+      });
+
+      vapi.on("volume-level", (level: number) => {
+        setVolumeLevel(level);
+      });
+
+      vapi.on("call-start-failed", (event) => {
+        console.error("[Vapi] call-start-failed", event);
+        setErrorDetail(describeVapiError(event));
+        goToFallback("error");
+      });
+
+      vapi.on("call-end", () => {
+        if (phaseRef.current !== "fallback") {
+          goToFallback("ended");
+        }
+      });
+
+      vapi.on("error", (err) => {
+        console.error("[Vapi] error", err);
+        setErrorDetail(describeVapiError(err));
+        goToFallback("error");
+      });
+
+      await vapi.start(ASSISTANT_ID);
+    } catch (err) {
+      console.error("[Vapi] start threw", err);
+      setErrorDetail(describeVapiError(err));
+      goToFallback("error");
+    }
+  }, [goToFallback]);
+
+  const stopConversation = useCallback(() => {
+    if (vapiRef.current) {
+      vapiRef.current.stop();
+    }
+  }, []);
+
+  const handleOrbClick = useCallback(() => {
+    if (phase === "idle") {
+      startConversation();
+    } else if (phase === "active") {
+      stopConversation();
+    }
+  }, [phase, startConversation, stopConversation]);
+
+  const isActive = phase === "active";
+  const isConnecting = isActive && voiceStatus === "connecting";
+  const isSpeaking = isActive && voiceStatus === "speaking";
 
   const activeScale =
-    !prefersReducedMotion && isActive && isAssistantSpeaking
-      ? 1 + volumeLevel * 0.18
-      : 1;
+    !prefersReducedMotion && isSpeaking ? 1 + volumeLevel * 0.18 : 1;
 
   const statusText = (() => {
-    switch (state) {
-      case "idle":
-        return VAPI_PUBLIC_KEY ? "Tap the orb to talk to Carlos" : "Live voice demo coming online soon";
-      case "connecting":
-        return "Connecting…";
-      case "active":
-        return isAssistantSpeaking ? "Carlos is speaking" : "Listening…";
-      case "ended":
-        return "Call ended";
-      case "error":
-        return errorMessage ?? "Something went wrong — try again.";
+    if (phase === "idle") return "Tap the orb to talk to Carlos";
+    if (phase === "active") {
+      switch (voiceStatus) {
+        case "connecting":
+          return "Connecting…";
+        case "listening":
+          return "Listening…";
+        case "speaking":
+          return "Carlos is speaking";
+        case "thinking":
+          return "Thinking…";
+      }
     }
+    if (phase === "fallback") {
+      return fallbackReason === "error"
+        ? errorDetail || "Something went wrong — try again."
+        : "Call ended";
+    }
+    return "";
   })();
 
   return (
@@ -53,8 +160,8 @@ export const VoiceOrbSection = () => {
         <Reveal delay={120} className="relative my-8 flex items-center justify-center">
           <button
             type="button"
-            onClick={toggleCall}
-            disabled={isConnecting || !VAPI_PUBLIC_KEY}
+            onClick={handleOrbClick}
+            disabled={isConnecting}
             aria-label={
               isActive
                 ? "End voice conversation with Carlos"
@@ -62,7 +169,6 @@ export const VoiceOrbSection = () => {
             }
             className="relative w-[180px] h-[180px] md:w-[260px] md:h-[260px] flex items-center justify-center rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 transition-transform duration-200 hover:scale-[1.02] active:scale-[0.99] disabled:cursor-not-allowed group"
           >
-            {/* outer glow rings */}
             <span
               className={`absolute inset-0 rounded-full orb-ring transition-opacity duration-500 ${
                 isActive ? "opacity-90" : "opacity-100"
@@ -78,17 +184,14 @@ export const VoiceOrbSection = () => {
               style={{ background: "var(--gradient-glow-amber)", animationDelay: "2.4s" }}
             />
 
-            {/* connecting pulse — extra ring while we wait */}
             {isConnecting && (
               <span className="absolute inset-[-6px] rounded-full border-2 border-primary/70 animate-ping" />
             )}
 
-            {/* active ring highlight */}
-            {isActive && (
+            {isActive && voiceStatus !== "connecting" && (
               <span className="absolute inset-[-2px] rounded-full ring-4 ring-primary/60 shadow-[0_0_80px_rgba(200,80,46,0.55)]" />
             )}
 
-            {/* core orb */}
             <span
               className={`relative w-[60%] h-[60%] rounded-full ${
                 isActive ? "" : "orb-pulse"
@@ -101,7 +204,10 @@ export const VoiceOrbSection = () => {
               }}
             >
               {isActive ? (
-                <PhoneOff className="text-cream/90 opacity-0 group-hover:opacity-100 transition-opacity" size={28} />
+                <PhoneOff
+                  className="text-cream/90 opacity-0 group-hover:opacity-100 transition-opacity"
+                  size={28}
+                />
               ) : (
                 <Mic className="text-cream/90" size={28} />
               )}
@@ -119,10 +225,11 @@ export const VoiceOrbSection = () => {
           </h2>
         </Reveal>
 
-        {/* Live status line (reserves space so layout doesn't shift) */}
         <p
           className={`mt-6 small-caps text-sm tabular min-h-[1.5rem] tracking-wider transition-colors ${
-            state === "error" ? "text-destructive" : "text-foreground/60"
+            phase === "fallback" && fallbackReason === "error"
+              ? "text-destructive"
+              : "text-foreground/60"
           }`}
           aria-live="polite"
         >
@@ -132,7 +239,7 @@ export const VoiceOrbSection = () => {
         {isActive && (
           <button
             type="button"
-            onClick={toggleCall}
+            onClick={stopConversation}
             className="mt-6 inline-flex items-center gap-2 px-5 py-2 text-xs small-caps border border-border/50 text-foreground/75 hover:text-foreground hover:border-foreground/50 rounded-full transition-colors"
           >
             <PhoneOff size={14} />
