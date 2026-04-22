@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
 const items = [
-  { id: "panorama", label: "Panorama", icon: "🎯" },
-  { id: "estado", label: "Estado Actual", icon: "⚠️" },
-  { id: "plan", label: "El Plan", icon: "💡" },
-  { id: "roadmap", label: "Roadmap", icon: "🚀" },
-  { id: "inversion", label: "Inversión", icon: "💰" },
+  { id: "panorama", label: "Market", icon: "🎯" },
+  { id: "estado", label: "Current State", icon: "⚠️" },
+  { id: "plan", label: "The Plan", icon: "💡" },
+  { id: "roadmap", label: "Capabilities", icon: "🚀" },
+  { id: "inversion", label: "Investment", icon: "💰" },
   { id: "faq", label: "FAQ", icon: "❓" },
 ];
 
