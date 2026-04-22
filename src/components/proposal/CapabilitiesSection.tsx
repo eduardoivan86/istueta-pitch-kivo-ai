@@ -23,7 +23,7 @@ export const CapabilitiesSection = () => {
             Eight capabilities. One platform.
             <br />
             <em className="italic font-light text-foreground/85">
-              Operada por nosotros, reportando a ustedes.
+              Operated by us, reporting to you.
             </em>
           </h2>
         </Reveal>

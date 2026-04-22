@@ -2,59 +2,59 @@ import { Reveal } from "@/components/site/Reveal";
 
 const phases = [
   {
-    n: "Fase 1",
+    n: "Phase 1",
     title: "Foundation",
-    when: "Semanas 1–2",
+    when: "Weeks 1–2",
     bullets: [
-      "Voice agent inbound — bilingüe desde día 1",
+      "Inbound voice agent — bilingual from day one",
       "Form callback automation",
-      "Dashboard de operación semanal",
+      "Weekly operations dashboard",
       "Salesforce integration (read + write)",
       "Trained on Istueta tone, products, geography",
-      "Hurricane templates pre-cargados",
+      "Hurricane templates pre-loaded",
     ],
-    capacity: "Capacidad típica: 100–250 calls/día sin hold time",
+    capacity: "Typical capacity: 100–250 calls/day with zero hold time",
   },
   {
-    n: "Fase 2",
-    title: "Expansion Digital",
-    when: "Semanas 3–4",
+    n: "Phase 2",
+    title: "Digital Expansion",
+    when: "Weeks 3–4",
     bullets: [
       "Voice widget on istuetaroofing.com",
-      "Chat widget con same-brain",
+      "Chat widget sharing the same brain",
       "SMS follow-up automation",
-      "Qualification scoring por tipo de proyecto",
-      "Smart routing a Eduardo / sales team",
+      "Qualification scoring by project type",
+      "Smart routing to Eduardo / sales team",
     ],
-    capacity: "Capacidad típica: cobertura web 100% sin staff adicional",
+    capacity: "Typical capacity: 100% web coverage without adding staff",
   },
   {
-    n: "Fase 3",
+    n: "Phase 3",
     title: "Multi-Channel Conquest",
-    when: "Mes 2",
+    when: "Month 2",
     bullets: [
       "WhatsApp Business API integration",
-      "Instagram DMs auto-response + qualification",
+      "Instagram DMs — auto-response + qualification",
       "Facebook Messenger unified inbox",
-      "Salesforce sync bidireccional en tiempo real",
-      "Cross-channel context (no repetir info)",
-      "Voice ↔ chat ↔ WA handoff sin fricción",
+      "Real-time bidirectional Salesforce sync",
+      "Cross-channel context (no repeating info)",
+      "Voice ↔ chat ↔ WhatsApp handoff without friction",
     ],
-    capacity: "Capacidad típica: 4 canales, una sola conversación por cliente",
+    capacity: "Typical capacity: 4 channels, one conversation per customer",
   },
   {
-    n: "Fase 4",
+    n: "Phase 4",
     title: "Revenue Recovery + Operational AI",
-    when: "Mes 3+",
+    when: "Month 3+",
     bullets: [
-      "Reactivation campaign sobre 5,000+ contactos dormidos",
-      "Auto-quote generation por tipo de proyecto",
-      "Post-visit email automation con next steps",
+      "Reactivation campaign over 5,000+ dormant contacts",
+      "Auto-quote generation by project type",
+      "Post-visit email automation with next steps",
       "Document management (insurance, permits, contracts)",
-      "Hurricane season templates + auto-spike handling",
-      "Proactive maintenance reminders por roof age",
+      "Hurricane season templates + automatic spike handling",
+      "Proactive maintenance reminders based on roof age",
     ],
-    capacity: "Capacidad típica: $1.5M–$2.4M anualizado en pipeline recovery",
+    capacity: "Typical capacity: $1.5M–$2.4M annualized in pipeline recovery",
   },
 ];
 
@@ -63,13 +63,13 @@ export const PlanSection = () => {
     <section id="plan" className="py-32 md:py-40 px-6 md:px-10 scroll-mt-32 bg-warm">
       <div className="max-w-editorial mx-auto">
         <Reveal>
-          <p className="small-caps text-primary mb-6">El Plan</p>
+          <p className="small-caps text-primary mb-6">The Plan</p>
         </Reveal>
         <Reveal delay={80}>
           <h2 className="font-display text-4xl md:text-[56px] tracking-tight leading-[1.05] max-w-4xl">
-            Un sistema operativo comercial completo.
+            A complete commercial operating system.
             <br />
-            <em className="italic font-light text-foreground/85">Implementado en fases.</em>
+            <em className="italic font-light text-foreground/85">Rolled out in phases.</em>
           </h2>
         </Reveal>
 
