@@ -45,7 +45,7 @@ export const DifferenceSection = () => {
             <Reveal key={it.label} delay={i * 60}>
               <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 items-end border-t border-border/50 pt-10 md:pt-14">
                 <div className="md:col-span-7">
-                  <div className="font-display tabular text-primary leading-[0.85] tracking-[-0.04em] text-[120px] sm:text-[160px] md:text-[200px]">
+                  <div className="font-display tabular text-primary leading-[0.85] tracking-[-0.04em] text-[88px] sm:text-[140px] md:text-[200px] break-words">
                     {it.n}
                     <span className="text-primary/80 text-[0.5em] align-top ml-2">{it.suffix}</span>
                   </div>

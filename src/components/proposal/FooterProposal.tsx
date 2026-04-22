@@ -2,7 +2,7 @@ export const FooterProposal = () => {
   return (
     <footer className="py-24 px-6 md:px-10 border-t border-border/40" style={{ backgroundColor: "hsl(222 14% 5%)" }}>
       <div className="max-w-editorial mx-auto">
-        <h3 className="font-display text-6xl md:text-8xl tracking-tight text-foreground">
+        <h3 className="font-display text-5xl md:text-8xl tracking-tight text-foreground">
           Kivo<span className="text-primary">.</span>
         </h3>
         <p className="mt-6 max-w-md text-foreground/65 leading-relaxed">

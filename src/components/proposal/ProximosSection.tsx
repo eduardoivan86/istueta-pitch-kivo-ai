@@ -11,7 +11,7 @@ export const ProximosSection = () => {
     <section className="bg-deep py-32 md:py-40 px-6 md:px-10">
       <div className="max-w-editorial mx-auto">
         <Reveal>
-          <h2 className="font-display text-5xl md:text-7xl lg:text-[80px] leading-[1.02] tracking-[-0.025em] max-w-4xl">
+          <h2 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-[80px] leading-[1.02] tracking-[-0.025em] max-w-4xl">
             Your next customer is trying to reach you{" "}
             <em className="italic font-light text-primary">right now.</em>
           </h2>

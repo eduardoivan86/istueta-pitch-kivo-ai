@@ -2,10 +2,10 @@ export const FooterLanding = () => {
   return (
     <footer className="bg-deep py-24 md:py-28 px-6 md:px-10 border-t border-border/40">
       <div className="max-w-editorial mx-auto">
-        <h3 className="font-display text-6xl md:text-8xl tracking-tight text-foreground">
+        <h3 className="font-display text-5xl md:text-8xl tracking-tight text-foreground">
           Istueta<span className="text-primary">.</span>
         </h3>
-        <p className="mt-4 font-display italic text-foreground/60 text-lg md:text-xl max-w-xl">
+        <p className="mt-4 font-display italic text-foreground/60 text-base md:text-xl max-w-xl leading-snug">
           Family-owned. Factory-certified. Bilingual. Miami-proud. Since 1985.
         </p>
 

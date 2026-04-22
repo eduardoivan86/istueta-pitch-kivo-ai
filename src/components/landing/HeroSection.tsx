@@ -25,7 +25,7 @@ export const HeroSection = () => {
 
       {/* Center content */}
       <div className="relative z-10 max-w-editorial mx-auto px-6 md:px-10 min-h-screen flex flex-col justify-center pt-24">
-        <h1 className="font-display text-cream text-[56px] leading-[1.02] sm:text-7xl md:text-[88px] lg:text-[96px] tracking-[-0.02em] max-w-5xl">
+        <h1 className="font-display text-cream text-[44px] leading-[1.03] sm:text-6xl md:text-[88px] lg:text-[96px] tracking-[-0.02em] max-w-5xl">
           Your last roof.
           <br />
           <em className="italic font-light text-cream/95">Built to outlive the house.</em>
