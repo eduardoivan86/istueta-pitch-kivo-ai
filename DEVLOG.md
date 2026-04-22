@@ -214,3 +214,14 @@ Good luck tomorrow. The pitch is yours.
 
 ### Round 2.2 — FAQ merge (follow-up)
 - `HEAD` content(faq): merge zyratalk + voice-agent-services answers into single faq (2-paragraph)
+
+---
+
+## Round 2.3 — Corrective Fixes (2026-04-22 ET)
+
+- `5fb9fe1` content(current-state): remove istueta from competitor table to avoid client critique
+- `8ba582d` content(pricing): foundation real pricing $1,500 setup + $600/mo (500 min included, $0.50/min overage)
+
+**Why:** Istueta appearing as a row in the competitor comparison implied the client was "behind" alongside their rivals. Round 2 softened the copy but missed the table. Also locked in real pricing (was showing $3,500/$2,500 placeholders) with usage-based minutes billing.
+
+**Downstream updates:** heading "Nine competitors mapped" → "Eight"; subcopy "nine most relevant" → "eight"; critical-insight callout "None of the nine top-tier" → "None of the eight". ROI block switched to "$600/mo + usage", net impact +$35,850, annualized conservative +$430K/yr.
