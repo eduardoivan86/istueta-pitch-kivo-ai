@@ -48,17 +48,15 @@ export const VoiceOrbSection = () => {
           </h2>
         </Reveal>
 
-        <Reveal delay={360}>
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 small-caps text-foreground/70">
-            <span>English & Spanish</span>
-            <span className="text-primary">→</span>
-            <span>Answers in &lt;30s</span>
-            <span className="text-primary">→</span>
-            <span>Books consultation</span>
-            <span className="text-primary">→</span>
-            <span>Works weekends, holidays, hurricanes</span>
-          </div>
-        </Reveal>
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 small-caps text-foreground/70">
+          <Reveal delay={360} className="inline-flex"><span>English &amp; Spanish</span></Reveal>
+          <Reveal delay={440} className="inline-flex"><span className="text-primary">→</span></Reveal>
+          <Reveal delay={520} className="inline-flex"><span>Answers in &lt;30s</span></Reveal>
+          <Reveal delay={600} className="inline-flex"><span className="text-primary">→</span></Reveal>
+          <Reveal delay={680} className="inline-flex"><span>Books consultation</span></Reveal>
+          <Reveal delay={760} className="inline-flex"><span className="text-primary">→</span></Reveal>
+          <Reveal delay={840} className="inline-flex"><span>Works weekends, holidays, hurricanes</span></Reveal>
+        </div>
       </div>
     </section>
   );
