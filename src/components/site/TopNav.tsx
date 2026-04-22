@@ -9,7 +9,6 @@ interface TopNavProps {
 
 export const TopNav = ({ active, onChange }: TopNavProps) => {
   const [scrolled, setScrolled] = useState(false);
-  const [lang, setLang] = useState<"EN" | "ES">("EN");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -40,24 +39,12 @@ export const TopNav = ({ active, onChange }: TopNavProps) => {
         <nav className="flex items-center gap-2 sm:gap-6">
           <TabBtn label="Landing" active={active === "landing"} onClick={() => onChange("landing")} />
           <span className="text-foreground/30 select-none">·</span>
-          <TabBtn label="Propuesta" active={active === "proposal"} onClick={() => onChange("proposal")} />
+          <TabBtn label="Proposal" active={active === "proposal"} onClick={() => onChange("proposal")} />
         </nav>
 
-        {/* Lang toggle */}
-        <div className="hidden sm:flex items-center gap-2 small-caps text-foreground/60">
-          <button
-            onClick={() => setLang("EN")}
-            className={`transition-colors ${lang === "EN" ? "text-primary" : "hover:text-foreground"}`}
-          >
-            EN
-          </button>
-          <span className="text-foreground/30">/</span>
-          <button
-            onClick={() => setLang("ES")}
-            className={`transition-colors ${lang === "ES" ? "text-primary" : "hover:text-foreground"}`}
-          >
-            ES
-          </button>
+        {/* Right-side micro-label (keeps layout balance) */}
+        <div className="hidden sm:flex items-center small-caps text-foreground/50 text-[0.65rem] tracking-[0.22em]">
+          Kivo × Istueta
         </div>
       </div>
     </header>
