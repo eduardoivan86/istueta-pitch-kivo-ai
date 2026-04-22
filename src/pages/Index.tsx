@@ -67,12 +67,12 @@ const Index = () => {
           <PlanSection />
           <CapabilitiesSection />
           <QuoteBlock
-            quote="We are not the cheapest. We are the ones who actually deliver."
+            quote="We're not the cheapest. We're the ones who actually deliver."
             support={
               <>
-                Por eso Harvey Windows, JP Medical Center, Dental Care of Deerfield Beach, y Lumber
-                Plus siguen operando con nosotros — no porque la tecnología sea perfecta, sino
-                porque alguien es accountable por el outcome cada semana.
+                That's why Harvey Windows, JP Medical Center, Dental Care of Deerfield Beach, and
+                Lumber Plus keep running with us — not because the tech is perfect, but because
+                someone is accountable for the outcome every week.
               </>
             }
           />

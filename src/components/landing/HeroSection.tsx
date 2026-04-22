@@ -34,7 +34,7 @@ export const HeroSection = () => {
         <p className="mt-8 max-w-xl text-cream/70 text-base md:text-lg leading-relaxed">
           41 years installing roofs that define South Florida homes.
           <br />
-          Family-owned. Factory-certified. Miami-proud.
+          Family-owned. Factory-certified. Bilingual. Miami-proud.
         </p>
 
         {/* Stats bar */}

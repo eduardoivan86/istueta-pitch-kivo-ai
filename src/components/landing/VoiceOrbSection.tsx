@@ -50,7 +50,7 @@ export const VoiceOrbSection = () => {
 
         <Reveal delay={360}>
           <div className="mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 small-caps text-foreground/70">
-            <span>English & Español</span>
+            <span>English & Spanish</span>
             <span className="text-primary">→</span>
             <span>Answers in &lt;30s</span>
             <span className="text-primary">→</span>
@@ -62,7 +62,7 @@ export const VoiceOrbSection = () => {
 
         <Reveal delay={480}>
           <p className="mt-10 font-display italic text-foreground/50 text-sm">
-            "This is a real Kivo agent. Not a recording."
+            Live voice demo during the meeting — call the number Eduardo shares.
           </p>
         </Reveal>
       </div>
