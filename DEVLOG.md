@@ -225,3 +225,28 @@ Good luck tomorrow. The pitch is yours.
 **Why:** Istueta appearing as a row in the competitor comparison implied the client was "behind" alongside their rivals. Round 2 softened the copy but missed the table. Also locked in real pricing (was showing $3,500/$2,500 placeholders) with usage-based minutes billing.
 
 **Downstream updates:** heading "Nine competitors mapped" → "Eight"; subcopy "nine most relevant" → "eight"; critical-insight callout "None of the nine top-tier" → "None of the eight". ROI block switched to "$600/mo + usage", net impact +$35,850, annualized conservative +$430K/yr.
+
+---
+
+## Round 2.5 — Vapi Web SDK Integration (2026-04-22 ET)
+
+- `a6ebb96` deps: add @vapi-ai/web
+- `b381621` config: add VITE_VAPI_PUBLIC_KEY env example + harden .gitignore for .env
+- `76aff5d` feat(hooks): add useVapi (lazy-loaded, reactive state, volume level)
+- `889b173` feat(voice-orb): wire vapi web sdk for live voice conversation on click
+
+**Configuración manual requerida post-deploy:**
+
+1. Vercel Dashboard → Settings → Environment Variables → add `VITE_VAPI_PUBLIC_KEY` for Production + Preview + Development, then trigger a redeploy.
+2. Local testing: `echo "VITE_VAPI_PUBLIC_KEY=xxx" > .env.local` then `npm run dev`.
+
+**Assistant:** `df02ceb7-32b2-4a71-9ff5-d9c22edc9f68` (Carlos, hardcoded in VoiceOrbSection).
+
+**Bundle impact:** Vapi + Daily.co WebRTC code-split into its own chunk (300 KB / 78 KB gzip) loaded on first orb click via dynamic `import("@vapi-ai/web")`. Main bundle stays at 117 KB gzip (baseline was 115 KB — +2 KB for the hook itself).
+
+**Smoke-test checklist:**
+- Click orb → browser prompts for mic → accept → Carlos speaks within ~2–3s
+- Orb core scales with volume while Carlos speaks (disabled under prefers-reduced-motion)
+- "End call" pill button appears below orb during active state
+- Deny mic permission → status line flips to destructive color with error message, resets to idle after 3s
+- Rapid double-click doesn't double-start (guarded by `state === "connecting"` check)
