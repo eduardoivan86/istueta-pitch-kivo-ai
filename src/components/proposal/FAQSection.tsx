@@ -4,12 +4,8 @@ import { Reveal } from "@/components/site/Reveal";
 
 const faqs = [
   {
-    q: "How is this different from other voice agent services?",
-    a: "Most voice agent services sell you a SaaS dashboard and disappear. We build the agent on your real call data, integrate it into Salesforce, and operate it weekly. You don't manage tooling — you read the report.",
-  },
-  {
     q: "What if we already tried AI before and it didn't work? (ZyraTalk)",
-    a: "ZyraTalk and similar tools are chatbots, not voice agents. The difference is clear: sub-600ms latency, natural voice, native bilingual understanding. And, critically, someone (us) is accountable every week for the outcome.",
+    a: "Honest answer — ZyraTalk and similar tools are chatbots, not voice agents. And most voice agent services aren't much better: they sell you a generic SaaS, hand you a dashboard, and disappear. You end up with a toy that talks but doesn't actually solve your business problems — no connection to your real systems, no understanding of your workflows, no one accountable when something breaks.\n\nKivo is the opposite: sub-600ms latency, natural voice, native bilingual understanding. We learn your business before we build the agent, we wire it into the tools you actually use, and we operate it every week. Someone is accountable for the outcome. The agent talks and closes — because it was built to.",
   },
   {
     q: "What if we already have Salesforce and don't want to change it?",
@@ -75,7 +71,11 @@ export const FAQSection = () => {
                 }`}
               >
                 <div className="overflow-hidden">
-                  <p className="text-foreground/70 leading-relaxed max-w-3xl">{f.a}</p>
+                  <div className="text-foreground/70 leading-relaxed max-w-3xl space-y-4">
+                    {f.a.split("\n\n").map((para, idx) => (
+                      <p key={idx}>{para}</p>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

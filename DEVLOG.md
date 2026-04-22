@@ -211,3 +211,6 @@ Good luck tomorrow. The pitch is yours.
 - Process section: 6 steps reveal over ~6s
 - Proposal plan: 2 phases + Optional expansion block
 - Pricing: Foundation is the recommended tier with bidirectional Salesforce + SMS + calendar sync bullets
+
+### Round 2.2 — FAQ merge (follow-up)
+- `HEAD` content(faq): merge zyratalk + voice-agent-services answers into single faq (2-paragraph)
