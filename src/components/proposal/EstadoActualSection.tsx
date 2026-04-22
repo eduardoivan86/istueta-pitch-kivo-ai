@@ -48,17 +48,18 @@ export const EstadoActualSection = () => {
         </Reveal>
         <Reveal delay={80}>
           <h2 className="font-display text-4xl md:text-[56px] tracking-tight leading-[1.05] max-w-4xl">
-            Istueta has the strongest heritage positioning in the premium market.
+            Nine competitors mapped.
             <br />
             <em className="italic font-light text-foreground/85">
-              And the weakest digital presence of Tier 1.
+              Zero using AI.
             </em>
           </h2>
         </Reveal>
         <Reveal delay={140}>
           <p className="mt-8 max-w-2xl text-foreground/70 leading-relaxed">
-            We mapped the 9 most relevant competitors in South Florida roofing. What we found
-            isn't just a gap — it's an open window.
+            We mapped the nine most relevant competitors in South Florida roofing.
+            Zero voice AI. Zero chat AI. Zero multi-channel automation.
+            The window closes when the first one catches up — not before.
           </p>
         </Reveal>
 
@@ -121,8 +122,8 @@ export const EstadoActualSection = () => {
           <div className="mt-16 bg-cream text-on-cream p-8 md:p-10 border-l-4 border-primary">
             <p className="small-caps text-primary mb-3">🔑 Critical insight</p>
             <p className="font-display text-xl md:text-2xl leading-snug">
-              None of Istueta's 9 direct competitors have voice AI, chat AI, or functional
-              multi-channel automation in 2026.{" "}
+              None of the nine top-tier South Florida roofers have voice AI, chat AI, or
+              functional multi-channel automation in 2026.{" "}
               <em className="italic">This is the exact moment to leap.</em>
             </p>
           </div>
