@@ -53,15 +53,13 @@ export const ProposalHero = () => {
           </div>
         </Reveal>
 
-        <Reveal delay={400}>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <Badge>🇺🇸🇪🇸 Native bilingual</Badge>
-            <Badge>⭐ 4.8/5</Badge>
-            <Badge>🏆 41 years</Badge>
-            <Badge>🔨 CertainTeed + GAF + Ludowici</Badge>
-            <Badge>🌀 Hurricane-ready</Badge>
-          </div>
-        </Reveal>
+        <div className="mt-10 flex flex-wrap gap-3">
+          <Reveal delay={400} className="inline-flex"><Badge>🇺🇸🇪🇸 Native bilingual</Badge></Reveal>
+          <Reveal delay={480} className="inline-flex"><Badge>⭐ 4.8/5</Badge></Reveal>
+          <Reveal delay={560} className="inline-flex"><Badge>🏆 41 years</Badge></Reveal>
+          <Reveal delay={640} className="inline-flex"><Badge>🔨 CertainTeed + GAF + Ludowici</Badge></Reveal>
+          <Reveal delay={720} className="inline-flex"><Badge>🌀 Hurricane-ready</Badge></Reveal>
+        </div>
 
         <Reveal delay={500}>
           <a
