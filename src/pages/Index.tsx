@@ -72,9 +72,9 @@ const Index = () => {
               quote="We're not the cheapest. We're the ones who actually deliver."
               support={
                 <>
-                  That's why Harvey Windows, JP Medical Center, Dental Care of Deerfield Beach, and
-                  Lumber Plus keep running with us — not because the tech is perfect, but because
-                  someone is accountable for the outcome every week.
+                  That's why Harvey Windows, JP Medical Center, Dental Care of Deerfield Beach,
+                  and Lumber Plus keep running with us — the system works, and when something
+                  needs attention, there's always someone accountable every week.
                 </>
               }
             />
