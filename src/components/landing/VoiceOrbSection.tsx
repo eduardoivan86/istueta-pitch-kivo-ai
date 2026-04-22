@@ -40,7 +40,7 @@ export const VoiceOrbSection = () => {
 
         <Reveal delay={240}>
           <h2 className="mt-10 font-display text-4xl md:text-5xl tracking-tight text-foreground max-w-3xl">
-            <strong className="font-medium">"Talk to Maria."</strong>
+            <strong className="font-medium">"Talk to Carlos."</strong>
             <br />
             <span className="italic font-light text-foreground/80">
               Our senior roofing expert. Live. 24/7.

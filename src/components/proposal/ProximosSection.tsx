@@ -3,7 +3,7 @@ import { Reveal } from "@/components/site/Reveal";
 const steps = [
   ["01 · Sign", "Contract signed → kick-off call the next day"],
   ["02 · Discovery (Week 1)", "Team learns Istueta — calls, scripts, products"],
-  ["03 · Live (Day 7)", "First real call closed by Maria"],
+  ["03 · Live (Day 7)", "First real call closed by Carlos"],
 ];
 
 export const ProximosSection = () => {

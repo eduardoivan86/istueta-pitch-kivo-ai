@@ -3,7 +3,7 @@ import { Reveal } from "@/components/site/Reveal";
 const caps = [
   { n: "01", title: "Voice", line: "Voice that actually sounds human", desc: "Latency under 600ms. Bilingual without translating. Trained on roofing vocabulary." },
   { n: "02", title: "Chat", line: "Every channel, one brain", desc: "Web, WhatsApp, Instagram, SMS. Same context. No repeating yourself." },
-  { n: "03", title: "Languages", line: "Native, not translated", desc: "Maria switches mid-sentence. Cubano, Colombiano, Argentino — sounds local." },
+  { n: "03", title: "Languages", line: "Native, not translated", desc: "Carlos switches mid-sentence. Cubano, Colombiano, Argentino — sounds local." },
   { n: "04", title: "Automations", line: "Follow-ups that never forget", desc: "Quote sent → 24h check-in → 72h close attempt → reactivation in 30 days." },
   { n: "05", title: "Inventory", line: "Knows what's actually in stock", desc: "Live sync with your supplier. Won't quote tile that's 6 weeks out." },
   { n: "06", title: "Triggers", line: "Campaigns that react in real time", desc: "Hurricane warning issued → emergency response sequence ships in 4 minutes." },

@@ -21,7 +21,7 @@ const faqs = [
   },
   {
     q: "Does it actually speak Spanish?",
-    a: "Native bilingual, not translated. Maria detects the language in the first phrase and holds it. Cuban, Colombian, Argentine accents — it sounds like a local.",
+    a: "Native bilingual, not translated. Carlos detects the language in the first phrase and holds it. Cuban, Colombian, Argentine accents — it sounds like a local.",
   },
   {
     q: "What happens if a call fails?",

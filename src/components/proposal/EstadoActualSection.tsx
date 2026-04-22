@@ -24,7 +24,7 @@ const painStats = [
 ];
 
 const hoyKivo = [
-  ["Receptionist clocks out at 5pm", "Maria answers 24/7/365"],
+  ["Receptionist clocks out at 5pm", "Carlos answers 24/7/365"],
   ["Saturday-morning leads → Monday reply", "Saturday-morning leads → instant call"],
   ["WhatsApp read tomorrow", "WhatsApp answered in seconds"],
   ["Voicemail = dead lead", "Voicemail = auto callback in 2 min"],

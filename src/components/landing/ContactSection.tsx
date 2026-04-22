@@ -102,7 +102,7 @@ export const ContactSection = () => {
             <div className="mt-14 text-center border border-success/50 bg-success/5 p-10">
               <div className="text-success text-4xl mb-4 leading-none">✓</div>
               <p className="font-display italic text-xl md:text-2xl text-foreground leading-snug">
-                Got it. Maria will call you within the next 5 minutes —
+                Got it. Carlos will call you within the next 5 minutes —
                 <br className="hidden md:block" />
                 even on weekends, after hours, or holidays.
               </p>
@@ -203,7 +203,7 @@ export const ContactSection = () => {
               )}
 
               <p className="text-center font-display italic text-foreground/40 text-sm pt-4">
-                "Got it. Maria will call you within the next 5 minutes."
+                "Got it. Carlos will call you within the next 5 minutes."
               </p>
             </form>
           )}
