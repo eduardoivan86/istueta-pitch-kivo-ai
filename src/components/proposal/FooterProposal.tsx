@@ -39,7 +39,7 @@ export const FooterProposal = () => {
 
         <div className="editorial-rule mt-20 mb-8" />
         <div className="flex flex-col md:flex-row md:justify-between gap-3 small-caps text-foreground/40 text-[0.65rem]">
-          <p>© 2026 · Kivo AI · Propuesta confidencial para Istueta Roofing</p>
+          <p>© 2026 · Kivo AI · Confidential proposal for Istueta Roofing</p>
           <p>Eduardo Collazos · eduardo@usekivo.ai · usekivo.ai</p>
         </div>
       </div>
