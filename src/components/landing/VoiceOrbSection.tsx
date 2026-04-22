@@ -1,7 +1,47 @@
-import { Mic } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Mic, PhoneOff } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
+import { useVapi } from "@/hooks/useVapi";
+
+const VAPI_ASSISTANT_ID = "df02ceb7-32b2-4a71-9ff5-d9c22edc9f68";
+const VAPI_PUBLIC_KEY = import.meta.env.VITE_VAPI_PUBLIC_KEY as string | undefined;
 
 export const VoiceOrbSection = () => {
+  const { state, volumeLevel, isAssistantSpeaking, errorMessage, toggleCall } = useVapi({
+    assistantId: VAPI_ASSISTANT_ID,
+    publicKey: VAPI_PUBLIC_KEY,
+  });
+
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  useEffect(() => {
+    setPrefersReducedMotion(
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }, []);
+
+  const isActive = state === "active";
+  const isConnecting = state === "connecting";
+
+  const activeScale =
+    !prefersReducedMotion && isActive && isAssistantSpeaking
+      ? 1 + volumeLevel * 0.18
+      : 1;
+
+  const statusText = (() => {
+    switch (state) {
+      case "idle":
+        return VAPI_PUBLIC_KEY ? "Tap the orb to talk to Carlos" : "Live voice demo coming online soon";
+      case "connecting":
+        return "Connecting…";
+      case "active":
+        return isAssistantSpeaking ? "Carlos is speaking" : "Listening…";
+      case "ended":
+        return "Call ended";
+      case "error":
+        return errorMessage ?? "Something went wrong — try again.";
+    }
+  })();
+
   return (
     <section className="bg-background py-32 md:py-40 px-6 md:px-10">
       <div className="max-w-editorial mx-auto flex flex-col items-center text-center">
@@ -11,10 +51,22 @@ export const VoiceOrbSection = () => {
 
         {/* Orb */}
         <Reveal delay={120} className="relative my-8 flex items-center justify-center">
-          <div className="relative w-[180px] h-[180px] md:w-[260px] md:h-[260px] flex items-center justify-center">
+          <button
+            type="button"
+            onClick={toggleCall}
+            disabled={isConnecting || !VAPI_PUBLIC_KEY}
+            aria-label={
+              isActive
+                ? "End voice conversation with Carlos"
+                : "Start voice conversation with Carlos"
+            }
+            className="relative w-[180px] h-[180px] md:w-[260px] md:h-[260px] flex items-center justify-center rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 transition-transform duration-200 hover:scale-[1.02] active:scale-[0.99] disabled:cursor-not-allowed group"
+          >
             {/* outer glow rings */}
             <span
-              className="absolute inset-0 rounded-full orb-ring"
+              className={`absolute inset-0 rounded-full orb-ring transition-opacity duration-500 ${
+                isActive ? "opacity-90" : "opacity-100"
+              }`}
               style={{ background: "var(--gradient-glow-amber)" }}
             />
             <span
@@ -25,17 +77,36 @@ export const VoiceOrbSection = () => {
               className="absolute inset-0 rounded-full orb-ring"
               style={{ background: "var(--gradient-glow-amber)", animationDelay: "2.4s" }}
             />
+
+            {/* connecting pulse — extra ring while we wait */}
+            {isConnecting && (
+              <span className="absolute inset-[-6px] rounded-full border-2 border-primary/70 animate-ping" />
+            )}
+
+            {/* active ring highlight */}
+            {isActive && (
+              <span className="absolute inset-[-2px] rounded-full ring-4 ring-primary/60 shadow-[0_0_80px_rgba(200,80,46,0.55)]" />
+            )}
+
             {/* core orb */}
             <span
-              className="relative w-[60%] h-[60%] rounded-full orb-pulse flex items-center justify-center shadow-[0_0_80px_-10px_hsl(var(--primary)/0.6)]"
+              className={`relative w-[60%] h-[60%] rounded-full ${
+                isActive ? "" : "orb-pulse"
+              } flex items-center justify-center shadow-[0_0_80px_-10px_hsl(var(--primary)/0.6)]`}
               style={{
                 background:
                   "radial-gradient(circle at 35% 30%, hsl(35 90% 70%), hsl(18 70% 45%) 70%, hsl(18 50% 25%))",
+                transform: `scale(${activeScale})`,
+                transition: "transform 80ms ease-out",
               }}
             >
-              <Mic className="text-cream/90" size={28} />
+              {isActive ? (
+                <PhoneOff className="text-cream/90 opacity-0 group-hover:opacity-100 transition-opacity" size={28} />
+              ) : (
+                <Mic className="text-cream/90" size={28} />
+              )}
             </span>
-          </div>
+          </button>
         </Reveal>
 
         <Reveal delay={240}>
@@ -47,6 +118,27 @@ export const VoiceOrbSection = () => {
             </span>
           </h2>
         </Reveal>
+
+        {/* Live status line (reserves space so layout doesn't shift) */}
+        <p
+          className={`mt-6 small-caps text-sm tabular min-h-[1.5rem] tracking-wider transition-colors ${
+            state === "error" ? "text-destructive" : "text-foreground/60"
+          }`}
+          aria-live="polite"
+        >
+          {statusText}
+        </p>
+
+        {isActive && (
+          <button
+            type="button"
+            onClick={toggleCall}
+            className="mt-6 inline-flex items-center gap-2 px-5 py-2 text-xs small-caps border border-border/50 text-foreground/75 hover:text-foreground hover:border-foreground/50 rounded-full transition-colors"
+          >
+            <PhoneOff size={14} />
+            End call
+          </button>
+        )}
 
         <div className="mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 small-caps text-foreground/70">
           <Reveal delay={360} className="inline-flex"><span>English &amp; Spanish</span></Reveal>
