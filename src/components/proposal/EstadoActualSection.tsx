@@ -1,7 +1,6 @@
 import { Reveal } from "@/components/site/Reveal";
 
 const competitors = [
-  { name: "Istueta Roofing", year: "1985", pos: "Premium heritage, family-owned", modernity: "⚠️", highlight: true },
   { name: "Earl W. Johnston", year: "1952", pos: "Volume legacy", modernity: "🟡" },
   { name: "Roofer Mike Inc", year: "~1995", pos: "Mid-market generalist", modernity: "⚠️" },
   { name: "Perkins Roofing", year: "1980", pos: "Commercial-leaning", modernity: "🟡" },
@@ -48,7 +47,7 @@ export const EstadoActualSection = () => {
         </Reveal>
         <Reveal delay={80}>
           <h2 className="font-display text-4xl md:text-[56px] tracking-tight leading-[1.05] max-w-4xl">
-            Nine competitors mapped.
+            Eight competitors mapped.
             <br />
             <em className="italic font-light text-foreground/85">
               Zero using AI.
@@ -57,7 +56,7 @@ export const EstadoActualSection = () => {
         </Reveal>
         <Reveal delay={140}>
           <p className="mt-8 max-w-2xl text-foreground/70 leading-relaxed">
-            We mapped the nine most relevant competitors in South Florida roofing.
+            We mapped the eight most relevant competitors in South Florida roofing.
             Zero voice AI. Zero chat AI. Zero multi-channel automation.
             The window closes when the first one catches up — not before.
           </p>
@@ -81,7 +80,7 @@ export const EstadoActualSection = () => {
               {competitors.map((c) => (
                 <tr
                   key={c.name}
-                  className={`border-b border-border/50 ${c.highlight ? "bg-cream text-on-cream" : "text-foreground/85"}`}
+                  className="border-b border-border/50 text-foreground/85"
                 >
                   <Td bold>{c.name}</Td>
                   <Td>{c.year}</Td>
@@ -101,9 +100,7 @@ export const EstadoActualSection = () => {
           {competitors.map((c) => (
             <div
               key={c.name}
-              className={`p-5 border ${
-                c.highlight ? "bg-cream text-on-cream border-primary" : "border-border bg-card"
-              }`}
+              className="p-5 border border-border bg-card"
             >
               <p className="font-display text-lg">{c.name} <span className="text-foreground/40 text-sm">· {c.year}</span></p>
               <p className="text-sm mt-1 opacity-75">{c.pos}</p>
@@ -122,7 +119,7 @@ export const EstadoActualSection = () => {
           <div className="mt-16 bg-cream text-on-cream p-8 md:p-10 border-l-4 border-primary">
             <p className="small-caps text-primary mb-3">🔑 Critical insight</p>
             <p className="font-display text-xl md:text-2xl leading-snug">
-              None of the nine top-tier South Florida roofers have voice AI, chat AI, or
+              None of the eight top-tier South Florida roofers have voice AI, chat AI, or
               functional multi-channel automation in 2026.{" "}
               <em className="italic">This is the exact moment to leap.</em>
             </p>
