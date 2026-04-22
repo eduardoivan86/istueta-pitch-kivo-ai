@@ -1,31 +1,58 @@
 import { Reveal } from "@/components/site/Reveal";
+import { useCountUp } from "@/hooks/useCountUp";
 
 const items = [
   {
-    n: "41",
+    value: 41,
+    decimals: 0,
     suffix: " years",
     label: "Of craftsmanship",
     desc: "Of work that outlasts hurricanes, humidity, and Miami summers.",
   },
   {
-    n: "78",
+    value: 78,
+    decimals: 0,
     suffix: "%",
     label: "Of projects from referrals",
     desc: "We don't advertise. Our roofs do.",
   },
   {
-    n: "20+",
-    suffix: "",
+    value: 20,
+    decimals: 0,
+    suffix: "+",
     label: "Factory-certified experts",
     desc: "Every install passes through trained hands.",
   },
   {
-    n: "4.8",
+    value: 4.8,
+    decimals: 1,
     suffix: "★",
     label: "Average customer rating",
     desc: "Across Facebook, Guild Quality, and Houzz.",
   },
 ];
+
+const StatNumber = ({
+  value,
+  decimals,
+  suffix,
+}: {
+  value: number;
+  decimals: number;
+  suffix: string;
+}) => {
+  const { ref, value: displayValue } = useCountUp({
+    target: value,
+    duration: 1800,
+    decimals,
+  });
+  return (
+    <>
+      <span ref={ref}>{displayValue}</span>
+      <span className="text-primary/80 text-[0.5em] align-top ml-2">{suffix}</span>
+    </>
+  );
+};
 
 export const DifferenceSection = () => {
   return (
@@ -46,8 +73,7 @@ export const DifferenceSection = () => {
               <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 items-end border-t border-border/50 pt-10 md:pt-14">
                 <div className="md:col-span-7">
                   <div className="font-display tabular text-primary leading-[0.85] tracking-[-0.04em] text-[88px] sm:text-[140px] md:text-[200px] break-words">
-                    {it.n}
-                    <span className="text-primary/80 text-[0.5em] align-top ml-2">{it.suffix}</span>
+                    <StatNumber value={it.value} decimals={it.decimals} suffix={it.suffix} />
                   </div>
                 </div>
                 <div className="md:col-span-5 md:pb-8">
