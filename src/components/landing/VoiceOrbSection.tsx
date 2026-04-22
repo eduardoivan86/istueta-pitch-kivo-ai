@@ -59,12 +59,6 @@ export const VoiceOrbSection = () => {
             <span>Works weekends, holidays, hurricanes</span>
           </div>
         </Reveal>
-
-        <Reveal delay={480}>
-          <p className="mt-10 font-display italic text-foreground/50 text-sm">
-            Live voice demo during the meeting — call the number Eduardo shares.
-          </p>
-        </Reveal>
       </div>
     </section>
   );
