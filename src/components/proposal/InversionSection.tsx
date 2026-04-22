@@ -6,47 +6,48 @@ const tiers = [
     name: "Foundation",
     setup: "$3,500",
     monthly: "$2,500",
+    recommended: true,
     feats: [
       "Inbound bilingual voice agent",
       "Form callback automation",
       "Weekly dashboard",
-      "Salesforce read integration",
       "Trained on Istueta scope",
+      "Hurricane templates pre-loaded",
+      "Salesforce integration (bidirectional)",
+      "Calendar availability sync",
+      "Smart email routing + call summaries",
+      "SMS follow-up automation",
       "Email + SMS alerts",
       "Month 1 pilot (no penalty)",
     ],
   },
   {
     name: "Growth",
-    setup: "$5,000",
-    monthly: "$3,000",
-    recommended: true,
+    setup: "Available as expansion",
+    monthly: "Custom scope",
     feats: [
       "Everything in Foundation",
-      "Voice + chat widget on website",
-      "Multi-channel: WhatsApp + IG DMs",
-      "Salesforce bidirectional sync",
-      "Auto-quote generation",
-      "Post-visit email automation",
-      "Reactivation: 5,000+ dormant contacts",
+      "Multi-channel: WhatsApp + Instagram DMs + Messenger",
+      "Custom integrations tailored to your workflow",
+      "Specialized workflows (inspection automation, claims filing)",
+      "Reactivation campaign for 5,000+ dormant contacts",
+      "Cross-channel context (one conversation, all channels)",
       "Quarterly tuning cycle",
     ],
   },
   {
     name: "Complete",
-    setup: "$7,500",
-    monthly: "$3,500",
+    setup: "Custom tier",
+    monthly: "Let's talk",
     feats: [
       "Everything in Growth",
-      "Hurricane spike auto-handling",
-      "Inventory live sync",
-      "Document management",
-      "Permit / insurance workflows",
-      "Custom Salesforce reporting",
-      "Branded voice persona",
-      "Dedicated success engineer",
-      "Monthly strategy review",
-      "Priority response SLA",
+      "Branded voice persona (your team's voice cloned)",
+      "Inventory live sync (ERP / Salesforce)",
+      "Document management automation (insurance, permits, contracts)",
+      "Hurricane spike auto-handling with priority routing",
+      "Custom Salesforce reporting + BI dashboard",
+      "Permit / insurance workflow automation",
+      "Dedicated success engineer (1:1 weekly)",
     ],
   },
 ];
@@ -83,14 +84,26 @@ export const InversionSection = () => {
                 )}
                 <h3 className="font-display text-3xl tracking-tight">{t.name}</h3>
                 <div className="mt-6 space-y-1">
-                  <p className="font-display tabular text-4xl text-foreground">
-                    {t.setup}
-                    <span className="small-caps text-foreground/50 text-[0.6rem] ml-2">setup</span>
-                  </p>
-                  <p className="font-display tabular text-2xl text-foreground/80">
-                    {t.monthly}
-                    <span className="small-caps text-foreground/50 text-[0.6rem] ml-2">/ mo</span>
-                  </p>
+                  {t.setup.startsWith("$") ? (
+                    <p className="font-display tabular text-4xl text-foreground">
+                      {t.setup}
+                      <span className="small-caps text-foreground/50 text-[0.6rem] ml-2">setup</span>
+                    </p>
+                  ) : (
+                    <p className="font-display italic font-light text-xl text-foreground/80 leading-snug">
+                      {t.setup}
+                    </p>
+                  )}
+                  {t.monthly.startsWith("$") ? (
+                    <p className="font-display tabular text-2xl text-foreground/80">
+                      {t.monthly}
+                      <span className="small-caps text-foreground/50 text-[0.6rem] ml-2">/ mo</span>
+                    </p>
+                  ) : (
+                    <p className="font-display italic font-light text-lg text-foreground/60 leading-snug">
+                      {t.monthly}
+                    </p>
+                  )}
                 </div>
                 <div className="editorial-rule my-8 opacity-50" />
                 <ul className="space-y-3.5 text-foreground/85 text-sm">
@@ -109,22 +122,22 @@ export const InversionSection = () => {
         {/* ROI block */}
         <Reveal delay={120}>
           <div className="mt-20 bg-deep border border-border p-8 md:p-10 font-mono text-sm md:text-[15px] text-foreground/85 leading-relaxed">
-            <p className="small-caps text-primary text-[0.65rem] mb-5">// ROI Calculation · Growth tier</p>
+            <p className="small-caps text-primary text-[0.65rem] mb-5">// ROI Calculation · Foundation tier</p>
             <p>Current exposure:{" "}
               <span className="text-destructive font-bold">~$41,000/mo</span> in cost + lost revenue
             </p>
-            <p className="mt-3">With Kivo Growth ($3,000/mo):</p>
+            <p className="mt-3">With Kivo Foundation ($2,500/mo):</p>
             <p>  Revenue recovered:{" "}
               <span className="text-primary font-bold">~$36,450/mo</span> (conservative)
             </p>
             <p>  Net monthly impact:{" "}
-              <span className="text-success font-bold">+$36K</span> to P&L
+              <span className="text-success font-bold">+$33,950</span> to P&L
             </p>
             <p className="mt-3">Break-even:{" "}
               <span className="text-success font-bold">Month 1</span>
             </p>
             <p>Annualized, conservative:{" "}
-              <span className="text-primary font-bold">+$430K/yr</span>
+              <span className="text-primary font-bold">+$400K/yr</span>
             </p>
             <p>Annualized, realistic:{" "}
               <span className="text-primary font-bold">+$800K – $1.2M/yr</span>
