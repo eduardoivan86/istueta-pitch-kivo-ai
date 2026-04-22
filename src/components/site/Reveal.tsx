@@ -18,11 +18,15 @@ export const Reveal = ({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    const effectiveDelay = prefersReducedMotion ? 0 : delay;
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting) {
-            el.style.transitionDelay = `${delay}ms`;
+            el.style.transitionDelay = `${effectiveDelay}ms`;
             el.classList.add("in");
             io.unobserve(el);
           }
