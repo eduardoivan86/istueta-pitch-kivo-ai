@@ -1,17 +1,17 @@
 import { Reveal } from "@/components/site/Reveal";
 
 const stats1 = [
-  { n: "$6.7B", label: "mercado de roofing contractors en Florida 2026", src: "IBISWorld, 2026" },
-  { n: "2.75M", label: "habitantes Miami-Dade County 2026", src: "US Census, ACS 2024" },
-  { n: "69.3%", label: "hispano Miami-Dade racial/ethnic makeup", src: "US Census, 2024" },
-  { n: "~80%", label: "re-roofing share of annual demand in Florida", src: "Mordor Intelligence, 2026" },
+  { n: "$6.7B", label: "Florida roofing contractors market 2026", src: "IBISWorld, 2026" },
+  { n: "2.75M", label: "Miami-Dade County population 2026", src: "US Census, ACS 2024" },
+  { n: "69.3%", label: "Miami-Dade Hispanic population share", src: "US Census, 2024" },
+  { n: "~80%", label: "Re-roofing share of Florida's annual demand", src: "Mordor Intelligence, 2026" },
 ];
 
 const stats2 = [
-  { n: "$30B+", label: "roof-related insurance claims 2024" },
-  { n: "27", label: "huracanes promedio por década en Florida" },
-  { n: "30%", label: "del revenue anual de South Florida roofers en hurricane season" },
-  { n: "50–100%", label: "premium pricing durante emergency repairs" },
+  { n: "$30B+", label: "Roof-related insurance claims, 2024" },
+  { n: "27", label: "Hurricanes per decade, Florida average" },
+  { n: "30%", label: "Of South Florida roofers' annual revenue happens in hurricane season" },
+  { n: "50–100%", label: "Premium pricing during emergency repairs" },
 ];
 
 export const PanoramaSection = () => {
@@ -23,10 +23,10 @@ export const PanoramaSection = () => {
         </Reveal>
         <Reveal delay={80}>
           <h2 className="font-display text-4xl md:text-[64px] tracking-tight leading-[1.05] max-w-4xl">
-            El mercado existe. El tamaño sorprende.
+            The market exists. The size surprises.
             <br />
             <em className="italic font-light text-foreground/85">
-              Y está cambiando más rápido de lo que la industria admite.
+              And it's changing faster than the industry admits.
             </em>
           </h2>
         </Reveal>
@@ -49,10 +49,10 @@ export const PanoramaSection = () => {
 
         <Reveal delay={120}>
           <p className="mt-20 max-w-3xl text-foreground/70 leading-relaxed text-base md:text-lg">
-            South Florida no es un mercado más — es <em>el</em> mercado. Densidad de propiedad,
-            poder adquisitivo, y una temporada de huracanes que convierte cada Junio en un evento de
-            revenue. La pregunta no es si hay demanda. Es quién está preparado para responderla a
-            las 11pm de un sábado.
+            South Florida isn't just another market — it's <em>the</em> market. Property density,
+            purchasing power, and a hurricane season that turns every June into a revenue event.
+            The question isn't whether demand exists. It's who is ready to answer it at 11pm on a
+            Saturday.
           </p>
         </Reveal>
 
@@ -71,7 +71,7 @@ export const PanoramaSection = () => {
 
         <Reveal delay={200}>
           <p className="mt-24 text-center font-display italic text-2xl md:text-3xl text-foreground/85 max-w-3xl mx-auto leading-snug">
-            "El premio está en la mesa. La pregunta es quién lo captura."
+            "The prize is on the table. The only question is who captures it."
           </p>
         </Reveal>
       </div>

@@ -11,7 +11,7 @@ export const ProposalHero = () => {
       <div className="max-w-editorial mx-auto relative">
         <Reveal>
           <p className="small-caps text-foreground/55 mb-6 tracking-[0.22em]">
-            K · Istueta Roofing · Propuesta de Crecimiento Estratégico · Abril 2026
+            K · Istueta Roofing · Strategic Growth Proposal · April 2026
           </p>
         </Reveal>
 
@@ -27,19 +27,19 @@ export const ProposalHero = () => {
             Sells like your best closer.
             <br />
             <em className="italic font-light text-foreground/85">
-              24/7. Bilingüe. For 41 years of craft.
+              24/7. Bilingual. For 41 years of craft.
             </em>
           </h1>
         </Reveal>
 
         <Reveal delay={240}>
           <p className="mt-10 max-w-2xl text-foreground/70 text-base md:text-lg leading-relaxed">
-            Istueta Roofing construye <strong className="text-foreground">78%</strong> de sus
-            proyectos por referidos — un número que marca liderazgo absoluto en South Florida. Pero
-            el 22% restante, los leads que llegan vía web, Instagram, WhatsApp, o después de hora,
-            están escapando a competidores que responden en 30 segundos. Este documento explica
-            exactamente por qué, cuánto está costando, y cómo Kivo AI puede cerrar esa brecha antes
-            del próximo ciclo de huracanes.
+            Istueta Roofing builds <strong className="text-foreground">78%</strong> of its projects
+            from referrals — a number that marks absolute leadership in South Florida. But the
+            remaining 22%, the leads that arrive via web, Instagram, WhatsApp, or after hours, are
+            leaking to competitors who respond in 30 seconds. This document explains exactly why,
+            how much it's costing, and how Kivo AI can close that gap before the next hurricane
+            cycle.
           </p>
         </Reveal>
 
@@ -55,9 +55,9 @@ export const ProposalHero = () => {
 
         <Reveal delay={400}>
           <div className="mt-10 flex flex-wrap gap-3">
-            <Badge>🇺🇸🇪🇸 Bilingüe nativo</Badge>
+            <Badge>🇺🇸🇪🇸 Native bilingual</Badge>
             <Badge>⭐ 4.8/5</Badge>
-            <Badge>🏆 41 años</Badge>
+            <Badge>🏆 41 years</Badge>
             <Badge>🔨 CertainTeed + GAF + Ludowici</Badge>
             <Badge>🌀 Hurricane-ready</Badge>
           </div>
@@ -68,7 +68,7 @@ export const ProposalHero = () => {
             href="#panorama"
             className="mt-20 inline-flex items-center gap-2 small-caps text-foreground/70 hover:text-primary transition-colors"
           >
-            Ver el estudio completo ↓
+            See the full study ↓
           </a>
         </Reveal>
       </div>
