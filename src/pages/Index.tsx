@@ -40,49 +40,52 @@ const Index = () => {
     <main className="min-h-screen bg-background text-foreground font-sans">
       <TopNav active={tab} onChange={setTab} />
 
-      {tab === "landing" ? (
-        <>
-          <HeroSection />
-          <VoiceOrbSection />
-          <TrustSection />
-          <ServicesSection />
-          <DifferenceSection />
-          <PortfolioSection />
-          <ProcessSection />
-          <TestimonialsSection />
-          <ServiceAreasSection />
-          <ContactSection />
-          <FooterLanding />
-        </>
-      ) : (
-        <>
-          <ProposalHero />
-          <SubNav />
-          <QuoteBlock
-            quote="Most voice agent services sell you a generic SaaS, hand you a dashboard, and disappear. Kivo is the opposite: we learn your business before we build the agent, we wire it into the tools you actually use, and we operate it every week."
-            support="We build, train, and operate the agent for you. You watch the results land."
-          />
-          <PanoramaSection />
-          <EstadoActualSection />
-          <PlanSection />
-          <CapabilitiesSection />
-          <QuoteBlock
-            quote="We're not the cheapest. We're the ones who actually deliver."
-            support={
-              <>
-                That's why Harvey Windows, JP Medical Center, Dental Care of Deerfield Beach, and
-                Lumber Plus keep running with us — not because the tech is perfect, but because
-                someone is accountable for the outcome every week.
-              </>
-            }
-          />
-          <CasosSection />
-          <InversionSection />
-          <FAQSection />
-          <ProximosSection />
-          <FooterProposal />
-        </>
-      )}
+      {/* key on tab remounts the tree so the fade-up keyframe replays */}
+      <div key={tab} className="animate-fade-up">
+        {tab === "landing" ? (
+          <>
+            <HeroSection />
+            <VoiceOrbSection />
+            <TrustSection />
+            <ServicesSection />
+            <DifferenceSection />
+            <PortfolioSection />
+            <ProcessSection />
+            <TestimonialsSection />
+            <ServiceAreasSection />
+            <ContactSection />
+            <FooterLanding />
+          </>
+        ) : (
+          <>
+            <ProposalHero />
+            <SubNav />
+            <QuoteBlock
+              quote="Most voice agent services sell you a generic SaaS, hand you a dashboard, and disappear. Kivo is the opposite: we learn your business before we build the agent, we wire it into the tools you actually use, and we operate it every week."
+              support="We build, train, and operate the agent for you. You watch the results land."
+            />
+            <PanoramaSection />
+            <EstadoActualSection />
+            <PlanSection />
+            <CapabilitiesSection />
+            <QuoteBlock
+              quote="We're not the cheapest. We're the ones who actually deliver."
+              support={
+                <>
+                  That's why Harvey Windows, JP Medical Center, Dental Care of Deerfield Beach, and
+                  Lumber Plus keep running with us — not because the tech is perfect, but because
+                  someone is accountable for the outcome every week.
+                </>
+              }
+            />
+            <CasosSection />
+            <InversionSection />
+            <FAQSection />
+            <ProximosSection />
+            <FooterProposal />
+          </>
+        )}
+      </div>
     </main>
   );
 };
