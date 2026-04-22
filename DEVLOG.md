@@ -250,3 +250,37 @@ Good luck tomorrow. The pitch is yours.
 - "End call" pill button appears below orb during active state
 - Deny mic permission → status line flips to destructive color with error message, resets to idle after 3s
 - Rapid double-click doesn't double-start (guarded by `state === "connecting"` check)
+
+---
+
+## Round 2.5 REVISED — Vapi Aligned to kivo-web (2026-04-22 ET)
+
+Initial Round 2.5 worked structurally but diverged from the kivo-web
+pattern that's running in production on usekivo.ai. This revision ports
+the exact integration style so both sites behave consistently.
+
+**What changed vs Round 2.5 initial:**
+
+| aspect | Round 2.5 (initial) | Round 2.5 REVISED (aligned) |
+|---|---|---|
+| SDK module | `@vapi-ai/web` ^2.5.2 | `@vapi-ai/web` ^2.5.2 (same) |
+| Public key source | `VITE_VAPI_PUBLIC_KEY` env var | Hardcoded in `src/lib/vapi.ts` |
+| Integration style | Custom `useVapi` hook | Inline in component (kivo-web style) |
+| State model | `idle\|connecting\|active\|ended\|error` | `phase` + `voiceStatus` (kivo-web) |
+| Error surfacing | `err.message` | `describeVapiError` helper (kivo-web) |
+| `call-start-failed` | Not listened to | Listened to, routes to fallback |
+| Volume-reactive orb | Yes (istueta-only polish) | Yes (kept — kivo-web doesn't have an orb) |
+
+**Commits:**
+
+- `702843e` feat(lib): add lib/vapi.ts with hardcoded key + describeVapiError (kivo-web aligned)
+- `f6997a1` refactor(voice-orb): inline vapi integration matching kivo-web pattern
+
+**Assistant:** `df02ceb7-32b2-4a71-9ff5-d9c22edc9f68` (Carlos, Istueta-specific)
+**Public key:** `bfe6f456-61b5-4aad-a5fb-053003aeae94` (account-level, shared with kivo-web)
+
+**No Vercel env var needed.** Public Vapi keys are browser-side by design, so hardcoding them in source is idiomatic — matches kivo-web behaviour exactly.
+
+**Bundle impact:** Main stays at 118 KB gzip; Vapi + Daily.co WebRTC still split into a 78 KB gzip chunk loaded only after orb click.
+
+**Smoke test:** click orb → mic prompt → accept → Carlos speaks within 2–3s. Fallback text shows call-ended or describeVapiError detail on failure, auto-resets to idle after 1.5s (ended) / 3s (error).
