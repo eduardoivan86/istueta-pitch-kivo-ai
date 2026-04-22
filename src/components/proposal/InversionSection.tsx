@@ -14,13 +14,11 @@ const tiers = [
       "Form callback automation",
       "Weekly dashboard",
       "Trained on Istueta scope",
-      "Hurricane templates pre-loaded",
       "Salesforce integration (bidirectional)",
       "Calendar availability sync",
       "Smart email routing + call summaries",
       "SMS follow-up automation",
       "Email + SMS alerts",
-      "Month 1 pilot (no penalty)",
     ],
   },
   {
@@ -29,6 +27,7 @@ const tiers = [
     monthly: "Custom scope",
     feats: [
       "Everything in Foundation",
+      "Hurricane templates pre-loaded",
       "Multi-channel: WhatsApp + Instagram DMs + Messenger",
       "Custom integrations tailored to your workflow",
       "Specialized workflows (inspection automation, claims filing)",
