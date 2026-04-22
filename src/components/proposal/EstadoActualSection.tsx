@@ -135,7 +135,7 @@ export const EstadoActualSection = () => {
         </h3>
         <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-x-5 gap-y-10">
           {painStats.map(([n, l], i) => (
-            <Reveal key={n} delay={i * 40}>
+            <Reveal key={l} delay={i * 60} variant="scale">
               <div className="border-t border-border pt-5">
                 <div className="font-display text-primary tabular text-3xl md:text-[42px] leading-none tracking-[-0.02em]">
                   {n}
@@ -147,7 +147,7 @@ export const EstadoActualSection = () => {
         </div>
 
         {/* Hidden cost block */}
-        <Reveal delay={120}>
+        <Reveal delay={120} variant="scale">
           <div className="mt-20 bg-deep border border-border p-8 md:p-10 font-mono text-sm md:text-[15px] text-foreground/85 leading-relaxed">
             <p className="small-caps text-primary text-[0.65rem] mb-5">// Hidden Cost Calculation</p>
             <p className="text-foreground">Conservative model for Istueta:</p>
