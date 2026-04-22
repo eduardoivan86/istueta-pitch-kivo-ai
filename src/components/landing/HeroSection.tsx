@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import heroImg from "@/assets/hero-oceanfront.jpg";
 
 const stats = [
@@ -10,42 +10,11 @@ const stats = [
 
 export const HeroSection = () => {
   const [mounted, setMounted] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
-  const prefersReducedMotion = useRef(false);
 
   useEffect(() => {
-    prefersReducedMotion.current = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
     const id = window.requestAnimationFrame(() => setMounted(true));
     return () => window.cancelAnimationFrame(id);
   }, []);
-
-  useEffect(() => {
-    if (prefersReducedMotion.current) return;
-    let rafId = 0;
-    let ticking = false;
-
-    const handleScroll = () => {
-      if (!ticking) {
-        rafId = window.requestAnimationFrame(() => {
-          setScrollY(window.scrollY);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (rafId) window.cancelAnimationFrame(rafId);
-    };
-  }, []);
-
-  const parallaxOffset = prefersReducedMotion.current
-    ? 0
-    : Math.min(scrollY * 0.15, 80);
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-deep">
@@ -84,13 +53,7 @@ export const HeroSection = () => {
         </p>
 
         {/* Stats bar */}
-        <div
-          className="mt-12 flex flex-wrap items-center gap-x-5 gap-y-3 small-caps text-cream/85"
-          style={{
-            transform: `translate3d(0, ${parallaxOffset}px, 0)`,
-            willChange: "transform",
-          }}
-        >
+        <div className="mt-12 flex flex-wrap items-center gap-x-5 gap-y-3 small-caps text-cream/85">
           {stats.map((s, i) => (
             <span key={s.label} className="flex items-center gap-x-5 gap-y-3">
               {i > 0 && <span className="text-cream/30">·</span>}
