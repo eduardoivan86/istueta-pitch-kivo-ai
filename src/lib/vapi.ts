@@ -3,11 +3,11 @@
  * Pattern matches kivo-web (eduardoivan86/kivo-web · lib/vapi.ts) so the
  * voice-agent integration behaves the same way on both sites.
  *
- * The public key is safe to ship in client source — it's the shared
- * browser-side key for Eduardo's Vapi account. Private keys never leave
- * the server.
+ * The public key lives in client source by design — Vapi public keys are
+ * browser-side identifiers. This key belongs to the Istueta/Carlos Vapi
+ * workspace (separate from the Kivo workspace used by usekivo.ai).
  */
-export const VAPI_PUBLIC_KEY = "bfe6f456-61b5-4aad-a5fb-053003aeae94";
+export const VAPI_PUBLIC_KEY = "3609aa4a-4c77-4e99-a021-6d885f8fdfc3";
 
 /** Istueta assistant: "Carlos" (bilingual senior roofing expert). */
 export const ASSISTANT_ID = "df02ceb7-32b2-4a71-9ff5-d9c22edc9f68";
