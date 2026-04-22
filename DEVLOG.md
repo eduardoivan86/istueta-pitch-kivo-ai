@@ -163,3 +163,51 @@ This document.
 ---
 
 Good luck tomorrow. The pitch is yours.
+
+---
+
+## Round 2 — Content + Animation Sprint (2026-04-22 08:25 ET)
+
+**Start:** 2026-04-22 08:25 ET · **Branch:** main · **Auto-deploy:** Vercel
+
+### Fase A — Content changes (7 commits)
+- `7f94e5f` content: rename voice agent maria to carlos (agent is male)
+- `d3ecd03` feat(nav): logo click opens usekivo.ai in new tab
+- `d253a67` polish(voice-orb): remove meeting-specific caption for public site
+- `4e55ac8` content(proposal): soften quote support to emphasize accountability over imperfection
+- `a8932fc` content(current-state): reframe narrative from istueta-critique to market-opportunity
+- `db6703d` content(plan): restructure to 2 phases + optional growth track
+- `57d9b7d` content(pricing): foundation as recommended, growth+complete as expansion tiers
+
+### Fase B — Animations (8 commits)
+- `dce4a78` feat(hooks): add useCountUp (easeOutQuart, IO-triggered, reduced-motion aware)
+- `99d8698` polish(hero): stats staggered entrance (600→960ms) + subtle scroll parallax (15%, cap 80px)
+- `aa60693` polish(voice-orb): stagger badges for cinematic entrance (80ms increments)
+- `e1891ef` polish(difference): count-up animation on mega stats (1.8s duration)
+- `5a46a72` polish(panorama): fade+scale entrance on market stats (added `variant="scale"` to Reveal)
+- `cbaa6ed` polish(current-state): fade+scale entrance on pain stats + cost calc
+- `7fadcfa` polish(process): sequential step reveal (6s total, 1s stagger) + prefers-reduced-motion in Reveal
+- `1d8fcca` polish(proposal-hero): stagger badges individually (80ms increments)
+
+### What shipped beyond the plan
+- `Reveal` component gained a `variant` prop (`fade` | `scale`) and now honors `prefers-reduced-motion` globally.
+- Pricing card layout: non-`$` setup/monthly strings render in italic smaller type to avoid the `text-4xl` layout breaking on long strings like "Available as expansion".
+
+### Skipped / Pending
+- None. All 17 tasks from the prompt executed in order.
+
+### Known caveats
+- Count-up on "20+" uses target=20 with suffix="+". During animation the displayed number counts 0 → 20 (no "+" suffix flicker).
+- Process sequential 6-step reveal: if the user scrolls past while the stagger is running, the elements below have already fired their IO. This is intentional — we don't want replays.
+- Hero parallax scope: only applied to the stats bar, not the full hero stack. Avoids visual conflict with ken-burns background.
+
+### Post-deploy smoke-test targets
+- https://istueta-pitch-kivo-ai.vercel.app
+- Logo top-left → opens usekivo.ai in new tab
+- Hero stats: stagger on load, gentle scroll parallax
+- Voice orb: badges appear one-by-one on scroll-in; no meeting-specific caption
+- Difference section: mega numbers count up to target
+- Panorama + Current State: stats scale-in on scroll
+- Process section: 6 steps reveal over ~6s
+- Proposal plan: 2 phases + Optional expansion block
+- Pricing: Foundation is the recommended tier with bidirectional Salesforce + SMS + calendar sync bullets
