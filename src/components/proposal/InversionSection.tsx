@@ -7,13 +7,13 @@ const tiers = [
     setup: "$3,500",
     monthly: "$2,500",
     feats: [
-      "Voice agent inbound bilingüe",
+      "Inbound bilingual voice agent",
       "Form callback automation",
-      "Dashboard semanal",
+      "Weekly dashboard",
       "Salesforce read integration",
       "Trained on Istueta scope",
       "Email + SMS alerts",
-      "Pilot mes 1 (no penalty)",
+      "Month 1 pilot (no penalty)",
     ],
   },
   {
@@ -22,13 +22,13 @@ const tiers = [
     monthly: "$3,000",
     recommended: true,
     feats: [
-      "Todo lo de Foundation",
+      "Everything in Foundation",
       "Voice + chat widget on website",
       "Multi-channel: WhatsApp + IG DMs",
       "Salesforce bidirectional sync",
       "Auto-quote generation",
       "Post-visit email automation",
-      "Reactivation: 5,000+ dormant",
+      "Reactivation: 5,000+ dormant contacts",
       "Quarterly tuning cycle",
     ],
   },
@@ -37,11 +37,11 @@ const tiers = [
     setup: "$7,500",
     monthly: "$3,500",
     feats: [
-      "Todo lo de Growth",
+      "Everything in Growth",
       "Hurricane spike auto-handling",
       "Inventory live sync",
       "Document management",
-      "Permit/insurance workflows",
+      "Permit / insurance workflows",
       "Custom Salesforce reporting",
       "Branded voice persona",
       "Dedicated success engineer",
@@ -56,13 +56,13 @@ export const InversionSection = () => {
     <section id="inversion" className="py-32 md:py-40 px-6 md:px-10 scroll-mt-32 bg-warm">
       <div className="max-w-editorial mx-auto">
         <Reveal>
-          <p className="small-caps text-primary mb-6">La Inversión</p>
+          <p className="small-caps text-primary mb-6">The Investment</p>
         </Reveal>
         <Reveal delay={80}>
           <h2 className="font-display text-4xl md:text-[56px] tracking-tight leading-[1.05] max-w-4xl">
-            Tres formas de empezar. Un solo objetivo:
+            Three ways to start. One goal:
             <br />
-            <em className="italic font-light text-foreground/85">ROI positivo desde el mes 1.</em>
+            <em className="italic font-light text-foreground/85">Positive ROI from month one.</em>
           </h2>
         </Reveal>
 
@@ -115,19 +115,19 @@ export const InversionSection = () => {
             </p>
             <p className="mt-3">With Kivo Growth ($3,000/mo):</p>
             <p>  Revenue recovered:{" "}
-              <span className="text-primary font-bold">~$36,450/mo</span> (conservador)
+              <span className="text-primary font-bold">~$36,450/mo</span> (conservative)
             </p>
             <p>  Net monthly impact:{" "}
               <span className="text-success font-bold">+$36K</span> to P&L
             </p>
             <p className="mt-3">Break-even:{" "}
-              <span className="text-success font-bold">Mes 1</span>
+              <span className="text-success font-bold">Month 1</span>
             </p>
-            <p>Annualized conservador:{" "}
-              <span className="text-primary font-bold">+$430K/año</span>
+            <p>Annualized, conservative:{" "}
+              <span className="text-primary font-bold">+$430K/yr</span>
             </p>
-            <p>Annualized realista:{" "}
-              <span className="text-primary font-bold">+$800K – $1.2M/año</span>
+            <p>Annualized, realistic:{" "}
+              <span className="text-primary font-bold">+$800K – $1.2M/yr</span>
             </p>
           </div>
         </Reveal>
@@ -135,10 +135,10 @@ export const InversionSection = () => {
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
           <Reveal className="md:col-span-2">
             <div className="bg-cream text-on-cream p-8 border-l-4 border-primary h-full">
-              <p className="small-caps text-primary mb-3">🎯 Primer Mes Pilot</p>
+              <p className="small-caps text-primary mb-3">🎯 Month 1 Pilot</p>
               <p className="font-display text-xl leading-snug">
-                Primeros 30 días son período piloto. Si no vemos impacto medible, ajustamos scope o
-                pueden salir sin penalty.
+                The first 30 days are a pilot period. If we don't see measurable impact, we adjust
+                scope or you can exit without penalty.
               </p>
             </div>
           </Reveal>
@@ -146,12 +146,12 @@ export const InversionSection = () => {
             <div className="bg-background border border-border p-6 h-full">
               <p className="small-caps text-foreground/55 mb-3">📌 Sidebar</p>
               <p className="font-display text-base leading-snug">
-                ¿Modernizar el website completo?
+                Want to rebuild the whole website?
               </p>
               <p className="mt-3 text-foreground/70 text-sm leading-relaxed">
-                Si Istueta decide rehacer istuetaroofing.com completo, Kivo Studio (branding + web +
-                SEO + ads + content) puede liderar ese proyecto. El Tab 1 que ven es nuestro work
-                quality.
+                If Istueta decides to rebuild istuetaroofing.com from the ground up, Kivo Studio
+                (branding + web + SEO + ads + content) can lead that project. The Tab 1 concept
+                design is a preview of our work quality.
               </p>
               <p className="mt-4 small-caps text-primary text-[0.65rem]">kivo.ai/studio ↗</p>
             </div>

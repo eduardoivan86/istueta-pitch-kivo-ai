@@ -2,8 +2,8 @@ import { Reveal } from "@/components/site/Reveal";
 
 const small = [
   { name: "JP Medical Center", line: "After-hours patient intake captured 24/7.", stat: "+38% bookings" },
-  { name: "Dental Care Deerfield Beach", line: "WhatsApp + voice unificado en bilingüe.", stat: "92% answer rate" },
-  { name: "Lumber Plus", line: "Quote requests procesados en minutos, no días.", stat: "4× quote velocity" },
+  { name: "Dental Care Deerfield Beach", line: "WhatsApp + voice unified in bilingual.", stat: "92% answer rate" },
+  { name: "Lumber Plus", line: "Quote requests processed in minutes, not days.", stat: "4× quote velocity" },
 ];
 
 export const CasosSection = () => {
@@ -11,7 +11,7 @@ export const CasosSection = () => {
     <section className="bg-background py-32 md:py-40 px-6 md:px-10">
       <div className="max-w-editorial mx-auto">
         <Reveal>
-          <p className="small-caps text-primary mb-6">Casos Reales</p>
+          <p className="small-caps text-primary mb-6">Real Cases</p>
         </Reveal>
         <Reveal delay={80}>
           <h2 className="font-display text-4xl md:text-[56px] tracking-tight leading-[1.05] max-w-4xl">
@@ -28,7 +28,7 @@ export const CasosSection = () => {
               <span className="small-caps text-foreground/60 text-[0.65rem]">Windows & Doors</span>
             </div>
             <p className="font-display italic text-2xl md:text-3xl leading-snug text-foreground max-w-3xl tracking-tight">
-              "After-hours y weekend leads muriendo antes de response."
+              "After-hours and weekend leads were dying before anyone could respond."
             </p>
 
             <div className="mt-12 grid grid-cols-3 gap-4 md:gap-8">
@@ -61,13 +61,13 @@ export const CasosSection = () => {
 
         {/* Scaled projection */}
         <h3 className="mt-28 font-display text-3xl md:text-4xl tracking-tight max-w-3xl">
-          Proyección escalada para Istueta.
+          Scaled projection for Istueta.
         </h3>
         <div className="mt-10 space-y-4">
           {[
-            { tag: "Conservador", time: "Fase 1 solo · primeros 30 días", out: "60–90 after-hours leads · $140K–$220K pipeline" },
-            { tag: "Realista", time: "Fases 1–2 · 60 días", out: "150–200 leads · $450K–$630K pipeline" },
-            { tag: "Fase completa", time: "Mes 3–6 anualizado", out: "$1.5M – $2.4M pipeline recovery" },
+            { tag: "Conservative", time: "Phase 1 only · first 30 days", out: "60–90 after-hours leads · $140K–$220K pipeline" },
+            { tag: "Realistic", time: "Phases 1–2 · 60 days", out: "150–200 leads · $450K–$630K pipeline" },
+            { tag: "Full phase", time: "Month 3–6, annualized", out: "$1.5M – $2.4M pipeline recovery" },
           ].map((p, i) => (
             <Reveal key={p.tag} delay={i * 60}>
               <div className="grid grid-cols-1 md:grid-cols-12 gap-4 border-t border-border pt-5 items-baseline">

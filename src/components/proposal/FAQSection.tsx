@@ -4,36 +4,36 @@ import { Reveal } from "@/components/site/Reveal";
 
 const faqs = [
   {
-    q: "¿Cómo es diferente de otros voice agent services?",
+    q: "How is this different from other voice agent services?",
     a: "Most voice agent services sell you a SaaS dashboard and disappear. We build the agent on your real call data, integrate it into Salesforce, and operate it weekly. You don't manage tooling — you read the report.",
   },
   {
-    q: "¿Qué pasa si ya intentamos AI antes y no funcionó? (ZyraTalk)",
-    a: "ZyraTalk y similar tools son chatbots, no voice agents. La diferencia es claritas: latencia <600ms, voz natural, comprensión bilingüe nativa. Y, crítico, alguien (nosotros) es accountable cada semana por el outcome.",
+    q: "What if we already tried AI before and it didn't work? (ZyraTalk)",
+    a: "ZyraTalk and similar tools are chatbots, not voice agents. The difference is clear: sub-600ms latency, natural voice, native bilingual understanding. And, critically, someone (us) is accountable every week for the outcome.",
   },
   {
-    q: "¿Y si ya tenemos Salesforce y no queremos cambiar?",
-    a: "Perfecto. No reemplazamos Salesforce — vivimos dentro. Sync bidireccional, leads y actividades llegan automáticamente a sus pipelines existentes.",
+    q: "What if we already have Salesforce and don't want to change it?",
+    a: "Perfect. We don't replace Salesforce — we live inside it. Bidirectional sync. Leads and activity land automatically in your existing pipelines.",
   },
   {
-    q: "¿Cuánto tiempo hasta estar live?",
-    a: "Voice inbound + form callback live en día 7. Multi-canal en semana 4. Reactivation campaign mes 2. No big-bang launch — escalonado para no romper operación.",
+    q: "How long until we're live?",
+    a: "Voice inbound + form callback live on day 7. Multi-channel in week 4. Reactivation campaign in month 2. No big-bang launch — staged so your operations never break.",
   },
   {
-    q: "¿Habla español de verdad?",
-    a: "Bilingüe nativo, no traducido. Maria detecta el idioma en la primera frase y lo mantiene. Acentos cubano, colombiano, argentino — funciona como un local.",
+    q: "Does it actually speak Spanish?",
+    a: "Native bilingual, not translated. Maria detects the language in the first phrase and holds it. Cuban, Colombian, Argentine accents — it sounds like a local.",
   },
   {
-    q: "¿Qué pasa si falla una llamada?",
-    a: "Fallback automático: voicemail → SMS al cliente con link de booking → notificación al equipo en <2min. Cero leads perdidos por error técnico.",
+    q: "What happens if a call fails?",
+    a: "Automatic fallback: voicemail → SMS to the customer with a booking link → notification to the team in under 2 minutes. Zero leads lost to technical error.",
   },
   {
-    q: "¿Y el mercado de hurricane season — puede manejar el spike?",
-    a: "Sí. Plantillas hurricane pre-cargadas, capacidad elástica (no cuello de botella humano), priorización automática de emergency vs. routine. Diseñado exactamente para Junio–Noviembre.",
+    q: "What about hurricane season — can it handle the spike?",
+    a: "Yes. Pre-loaded hurricane templates, elastic capacity (no human bottleneck), automatic prioritization of emergency vs. routine. Designed exactly for June through November.",
   },
   {
-    q: "¿Qué pasa con los 5,000+ contactos históricos?",
-    a: "En Fase 4 lanzamos campaña de reactivación segmentada por roof age, project type, y last contact. Conservador: 1.5–3% conversion = $400K–$800K en pipeline dormido.",
+    q: "What happens with the 5,000+ historical contacts?",
+    a: "In Phase 4 we launch a segmented reactivation campaign by roof age, project type, and last contact. Conservative: 1.5–3% conversion = $400K–$800K in dormant pipeline.",
   },
 ];
 
@@ -48,7 +48,7 @@ export const FAQSection = () => {
         </Reveal>
         <Reveal delay={80}>
           <h2 className="font-display text-4xl md:text-[56px] tracking-tight leading-[1.05] max-w-3xl">
-            Las respuestas <em className="italic font-light">honestas.</em>
+            The <em className="italic font-light">honest</em> answers.
           </h2>
         </Reveal>
 
