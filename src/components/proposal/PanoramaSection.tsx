@@ -33,7 +33,7 @@ export const PanoramaSection = () => {
 
         <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12">
           {stats1.map((s, i) => (
-            <Reveal key={s.n} delay={i * 60}>
+            <Reveal key={s.n} delay={i * 80} variant="scale">
               <div className="border-t border-border pt-6">
                 <div className="font-display text-primary tabular text-5xl md:text-[72px] tracking-[-0.03em] leading-none">
                   {s.n}
@@ -58,7 +58,7 @@ export const PanoramaSection = () => {
 
         <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12">
           {stats2.map((s, i) => (
-            <Reveal key={s.n} delay={i * 60}>
+            <Reveal key={s.n} delay={i * 80} variant="scale">
               <div className="border-t border-border pt-6">
                 <div className="font-display text-foreground tabular text-4xl md:text-5xl tracking-[-0.03em] leading-none">
                   {s.n}

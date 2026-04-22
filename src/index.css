@@ -153,6 +153,17 @@
     opacity: 1;
     transform: translateY(0);
   }
+  .reveal-scale {
+    opacity: 0;
+    transform: translateY(20px) scale(0.94);
+    transition:
+      opacity 0.8s var(--ease-editorial),
+      transform 0.8s var(--ease-editorial);
+  }
+  .reveal-scale.in {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 @layer utilities {

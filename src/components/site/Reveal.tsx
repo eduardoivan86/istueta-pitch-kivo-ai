@@ -1,14 +1,18 @@
 import { useEffect, useRef } from "react";
 
-/** Wraps children with an intersection-observer fade-up. */
+type RevealVariant = "fade" | "scale";
+
+/** Wraps children with an intersection-observer fade-up (or fade+scale). */
 export const Reveal = ({
   children,
   delay = 0,
   className = "",
+  variant = "fade",
 }: {
   children: React.ReactNode;
   delay?: number;
   className?: string;
+  variant?: RevealVariant;
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
@@ -30,8 +34,10 @@ export const Reveal = ({
     return () => io.disconnect();
   }, [delay]);
 
+  const baseClass = variant === "scale" ? "reveal-scale" : "reveal";
+
   return (
-    <div ref={ref} className={`reveal ${className}`}>
+    <div ref={ref} className={`${baseClass} ${className}`}>
       {children}
     </div>
   );
