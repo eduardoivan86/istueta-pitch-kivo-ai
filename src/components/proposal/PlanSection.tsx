@@ -4,57 +4,29 @@ const phases = [
   {
     n: "Phase 1",
     title: "Foundation",
-    when: "Weeks 1–2",
+    when: "Week 1",
     bullets: [
       "Inbound voice agent — bilingual from day one",
       "Form callback automation",
       "Weekly operations dashboard",
-      "Salesforce integration (read + write)",
       "Trained on Istueta tone, products, geography",
       "Hurricane templates pre-loaded",
+      "Email + SMS alerts for your team",
     ],
     capacity: "Typical capacity: 100–250 calls/day with zero hold time",
   },
   {
     n: "Phase 2",
-    title: "Digital Expansion",
-    when: "Weeks 3–4",
+    title: "Salesforce & Intelligent Follow-up",
+    when: "Week 2–3",
     bullets: [
-      "Voice widget on istuetaroofing.com",
-      "Chat widget sharing the same brain",
-      "SMS follow-up automation",
-      "Qualification scoring by project type",
-      "Smart routing to Eduardo / sales team",
+      "Salesforce integration (bidirectional read + write)",
+      "Calendar sync for real-time availability check",
+      "Smart email routing with auto-confirmation + call summary to the right team member",
+      "SMS follow-up automation tailored by lead type",
+      "Smart routing to sales team based on project type and urgency",
     ],
-    capacity: "Typical capacity: 100% web coverage without adding staff",
-  },
-  {
-    n: "Phase 3",
-    title: "Multi-Channel Conquest",
-    when: "Month 2",
-    bullets: [
-      "WhatsApp Business API integration",
-      "Instagram DMs — auto-response + qualification",
-      "Facebook Messenger unified inbox",
-      "Real-time bidirectional Salesforce sync",
-      "Cross-channel context (no repeating info)",
-      "Voice ↔ chat ↔ WhatsApp handoff without friction",
-    ],
-    capacity: "Typical capacity: 4 channels, one conversation per customer",
-  },
-  {
-    n: "Phase 4",
-    title: "Revenue Recovery + Operational AI",
-    when: "Month 3+",
-    bullets: [
-      "Reactivation campaign over 5,000+ dormant contacts",
-      "Auto-quote generation by project type",
-      "Post-visit email automation with next steps",
-      "Document management (insurance, permits, contracts)",
-      "Hurricane season templates + automatic spike handling",
-      "Proactive maintenance reminders based on roof age",
-    ],
-    capacity: "Typical capacity: $1.5M–$2.4M annualized in pipeline recovery",
+    capacity: "Typical capacity: zero leads slip through the cracks, full CRM sync",
   },
 ];
 
@@ -104,6 +76,51 @@ export const PlanSection = () => {
               </article>
             </Reveal>
           ))}
+        </div>
+
+        {/* Optional future add-ons */}
+        <div className="mt-24 pt-20 border-t border-border/40">
+          <Reveal>
+            <p className="small-caps text-foreground/55 mb-4">Optional — When you're ready to scale</p>
+          </Reveal>
+          <Reveal delay={80}>
+            <h3 className="font-display text-3xl md:text-4xl tracking-tight max-w-3xl mb-8">
+              Everything beyond. <em className="italic font-light text-foreground/75">At your pace.</em>
+            </h3>
+          </Reveal>
+          <Reveal delay={140}>
+            <p className="text-foreground/70 max-w-2xl leading-relaxed mb-12">
+              Once Foundation is stable and you're ready to expand, these are the
+              natural next steps. No commitment today — we activate them when the timing makes sense.
+            </p>
+          </Reveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Reveal delay={200}>
+              <div className="bg-background border border-border p-6">
+                <p className="small-caps text-primary text-[0.65rem] mb-3">Multi-Channel Expansion</p>
+                <ul className="space-y-2 text-foreground/80 text-sm">
+                  <li>• WhatsApp Business API</li>
+                  <li>• Instagram DMs auto-response + qualification</li>
+                  <li>• Facebook Messenger unified inbox</li>
+                  <li>• Cross-channel context (one conversation)</li>
+                </ul>
+              </div>
+            </Reveal>
+
+            <Reveal delay={280}>
+              <div className="bg-background border border-border p-6">
+                <p className="small-caps text-primary text-[0.65rem] mb-3">Revenue Recovery + Operational AI</p>
+                <ul className="space-y-2 text-foreground/80 text-sm">
+                  <li>• Reactivation campaign over 5,000+ dormant contacts</li>
+                  <li>• Auto-quote generation by project type</li>
+                  <li>• Document management (insurance, permits)</li>
+                  <li>• Hurricane spike auto-handling with priority routing</li>
+                  <li>• Proactive maintenance reminders based on roof age</li>
+                </ul>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </div>
     </section>
