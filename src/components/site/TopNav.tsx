@@ -27,13 +27,15 @@ export const TopNav = ({ active, onChange }: TopNavProps) => {
     >
       <div className="max-w-editorial mx-auto h-full px-6 md:px-10 flex items-center justify-between">
         {/* Wordmark */}
-        <button
-          onClick={() => onChange("landing")}
-          className="font-display text-xl tracking-tight text-foreground"
-          aria-label="Kivo home"
+        <a
+          href="https://usekivo.ai"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-display text-xl tracking-tight text-foreground hover:opacity-70 transition-opacity cursor-pointer"
+          aria-label="Visit Kivo AI main site"
         >
           <span className="small-caps text-foreground/90 text-[0.7rem]">K · Kivo</span>
-        </button>
+        </a>
 
         {/* Tab switcher */}
         <nav className="flex items-center gap-2 sm:gap-6">
