@@ -1,12 +1,20 @@
 import { Reveal } from "@/components/site/Reveal";
 import { Check } from "lucide-react";
+import type { ReactNode } from "react";
 
-const tiers = [
+type Tier = {
+  name: string;
+  setup: string;
+  monthly: string;
+  recommended?: boolean;
+  feats: ReactNode[];
+};
+
+const tiers: Tier[] = [
   {
     name: "Foundation",
     setup: "$1,500",
     monthly: "$600",
-    recommended: true,
     feats: [
       "500 minutes/month included",
       "Additional minutes at $0.50/min",
@@ -23,15 +31,23 @@ const tiers = [
   },
   {
     name: "Growth",
-    setup: "Available as expansion",
-    monthly: "Custom scope",
+    setup: "$1,500",
+    monthly: "$2,700",
+    recommended: true,
     feats: [
-      "Everything in Foundation",
+      "1,500 minutes/month included",
+      "Additional minutes at $0.35/min",
+      <strong className="font-medium">Everything in Foundation</strong>,
+      <>
+        <strong className="font-medium">Unlimited messages</strong>: WhatsApp + Instagram DMs + Messenger + SMS
+      </>,
+      "10 custom workflows to personalize repeating functions",
+      <>
+        <strong className="font-medium">Reactivation campaigns</strong> for 5,000+ dormant contacts
+      </>,
       "Hurricane templates pre-loaded",
-      "Multi-channel: WhatsApp + Instagram DMs + Messenger",
       "Custom integrations tailored to your workflow",
       "Specialized workflows (inspection automation, claims filing)",
-      "Reactivation campaign for 5,000+ dormant contacts",
       "Cross-channel context (one conversation, all channels)",
       "Quarterly tuning cycle",
     ],
@@ -108,8 +124,8 @@ export const InversionSection = () => {
                 </div>
                 <div className="editorial-rule my-8 opacity-50" />
                 <ul className="space-y-3.5 text-foreground/85 text-sm">
-                  {t.feats.map((f) => (
-                    <li key={f} className="flex gap-3">
+                  {t.feats.map((f, idx) => (
+                    <li key={idx} className="flex gap-3">
                       <Check size={16} className="text-primary shrink-0 mt-0.5" />
                       <span>{f}</span>
                     </li>
