@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Mic, PhoneOff } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
-import type VapiType from "@vapi-ai/web";
+import type { RetellWebClient } from "retell-client-js-sdk";
 import {
-  ASSISTANT_ID,
-  VAPI_PUBLIC_KEY,
-  describeVapiError,
+  AGENT_ID,
+  describeRetellError,
+  fetchRetellAccessToken,
   type VoiceStatus,
-} from "@/lib/vapi";
+} from "@/lib/retell";
 
 type Phase = "idle" | "active" | "fallback";
 type FallbackReason = "error" | "ended";
@@ -20,7 +20,7 @@ export const VoiceOrbSection = () => {
   const [volumeLevel, setVolumeLevel] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
-  const vapiRef = useRef<VapiType | null>(null);
+  const retellRef = useRef<RetellWebClient | null>(null);
   const phaseRef = useRef(phase);
   phaseRef.current = phase;
 
@@ -32,9 +32,13 @@ export const VoiceOrbSection = () => {
 
   useEffect(() => {
     return () => {
-      if (vapiRef.current) {
-        vapiRef.current.stop();
-        vapiRef.current = null;
+      if (retellRef.current) {
+        try {
+          retellRef.current.stopCall();
+        } catch {
+          /* no-op: component unmounting */
+        }
+        retellRef.current = null;
       }
     };
   }, []);
@@ -49,8 +53,8 @@ export const VoiceOrbSection = () => {
   const startConversation = useCallback(async () => {
     if (phaseRef.current === "active") return;
 
-    if (!VAPI_PUBLIC_KEY || !ASSISTANT_ID) {
-      setErrorDetail("Vapi config missing");
+    if (!AGENT_ID) {
+      setErrorDetail("Retell config missing");
       goToFallback("error");
       return;
     }
@@ -60,55 +64,75 @@ export const VoiceOrbSection = () => {
     setErrorDetail("");
 
     try {
-      const Vapi = (await import("@vapi-ai/web")).default;
-      const vapi = new Vapi(VAPI_PUBLIC_KEY);
-      vapiRef.current = vapi;
+      // Step 1: ask our backend for a short-lived access token.
+      const accessToken = await fetchRetellAccessToken();
 
-      vapi.on("call-start", () => {
+      // Step 2: load the SDK (dynamic import keeps the initial bundle small).
+      const { RetellWebClient } = await import("retell-client-js-sdk");
+      const retell = new RetellWebClient();
+      retellRef.current = retell;
+
+      // Lifecycle
+      retell.on("call_started", () => {
         setVoiceStatus("listening");
       });
 
-      vapi.on("speech-start", () => {
+      retell.on("agent_start_talking", () => {
         setVoiceStatus("speaking");
       });
 
-      vapi.on("speech-end", () => {
+      retell.on("agent_stop_talking", () => {
         setVoiceStatus("listening");
       });
 
-      vapi.on("volume-level", (level: number) => {
-        setVolumeLevel(level);
+      // Volume: Retell doesn't emit a normalized volume-level like Vapi, but
+      // with emitRawAudioSamples: true it gives us the agent's raw PCM audio
+      // as Float32Array. We compute RMS per chunk and normalize it into the
+      // same 0..1 range Vapi used so the scale math below doesn't change.
+      retell.on("audio", (audio: Float32Array) => {
+        if (!audio || audio.length === 0) return;
+        let sumSquares = 0;
+        for (let i = 0; i < audio.length; i++) {
+          sumSquares += audio[i] * audio[i];
+        }
+        const rms = Math.sqrt(sumSquares / audio.length);
+        // ~4x scaling lands speech RMS in roughly the same band Vapi emitted.
+        setVolumeLevel(Math.min(1, rms * 4));
       });
 
-      vapi.on("call-start-failed", (event) => {
-        console.error("[Vapi] call-start-failed", event);
-        setErrorDetail(describeVapiError(event));
-        goToFallback("error");
-      });
-
-      vapi.on("call-end", () => {
+      retell.on("call_ended", () => {
+        setVolumeLevel(0);
         if (phaseRef.current !== "fallback") {
           goToFallback("ended");
         }
       });
 
-      vapi.on("error", (err) => {
-        console.error("[Vapi] error", err);
-        setErrorDetail(describeVapiError(err));
+      retell.on("error", (err: unknown) => {
+        console.error("[Retell] error", err);
+        setErrorDetail(describeRetellError(err));
         goToFallback("error");
       });
 
-      await vapi.start(ASSISTANT_ID);
+      // Step 3: start the call.
+      await retell.startCall({
+        accessToken,
+        sampleRate: 24000,
+        emitRawAudioSamples: true,
+      });
     } catch (err) {
-      console.error("[Vapi] start threw", err);
-      setErrorDetail(describeVapiError(err));
+      console.error("[Retell] start threw", err);
+      setErrorDetail(describeRetellError(err));
       goToFallback("error");
     }
   }, [goToFallback]);
 
   const stopConversation = useCallback(() => {
-    if (vapiRef.current) {
-      vapiRef.current.stop();
+    if (retellRef.current) {
+      try {
+        retellRef.current.stopCall();
+      } catch (err) {
+        console.error("[Retell] stopCall threw", err);
+      }
     }
   }, []);
 

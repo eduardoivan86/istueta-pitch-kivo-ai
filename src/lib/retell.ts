@@ -1,16 +1,20 @@
 /**
- * Vapi configuration for the Istueta pitch site.
- * Pattern matches kivo-web (eduardoivan86/kivo-web · lib/vapi.ts) so the
- * voice-agent integration behaves the same way on both sites.
+ * Retell configuration for the Istueta pitch site.
+ * Replaces the previous Vapi integration.
  *
- * The public key lives in client source by design — Vapi public keys are
- * browser-side identifiers. This key belongs to the Istueta/Carlos Vapi
- * workspace (separate from the Kivo workspace used by usekivo.ai).
+ * Key architectural difference from Vapi: Retell's API key is secret and lives
+ * ONLY on the server (see api/retell-web-call.ts). The browser hits that
+ * endpoint to get a short-lived access_token, then hands it to the Retell
+ * Web SDK. The agent_id is public and lives here for reference only — the
+ * backend also pins it, so even if this file were tampered with, calls still
+ * route to the Istueta demo agent.
  */
-export const VAPI_PUBLIC_KEY = "3609aa4a-4c77-4e99-a021-6d885f8fdfc3";
 
 /** Istueta assistant: "Carlos" (bilingual senior roofing expert). */
-export const ASSISTANT_ID = "df02ceb7-32b2-4a71-9ff5-d9c22edc9f68";
+export const AGENT_ID = "agent_15948aa132e2b81248586bda6f";
+
+/** Backend endpoint that returns a short-lived Retell access token. */
+export const RETELL_TOKEN_ENDPOINT = "/api/retell-web-call";
 
 export type VoiceStatus = "connecting" | "listening" | "speaking" | "thinking";
 
@@ -32,12 +36,10 @@ function safeStringify(value: unknown, max = 400): string {
 }
 
 /**
- * Best-effort Vapi error describer. Vapi errors nest HTTP bodies / stack
- * heads in different shapes depending on the stage (start, websocket,
- * call-start-failed), so we surface every known key plus a raw snapshot.
- * Lifted from kivo-web for consistent error reporting.
+ * Best-effort Retell error describer. Mirrors the Vapi version so the UI
+ * behavior on the fallback screen stays identical.
  */
-export function describeVapiError(err: unknown): string {
+export function describeRetellError(err: unknown): string {
   if (!err) return "";
   if (typeof err === "string") return err;
   if (err instanceof Error) return err.message || err.name;
@@ -82,13 +84,31 @@ export function describeVapiError(err: unknown): string {
     for (const [k, v] of Object.entries(ctx)) push(`ctx.${k}`, v);
   }
 
-  if (e.error && typeof e.error === "object") {
-    const raw = safeStringify(e.error, 280);
-    if (raw && raw !== "{}") parts.push(`raw=${raw}`);
-  }
-
   if (parts.length) return parts.join(" · ").slice(0, 500);
 
   const whole = safeStringify(err, 500);
   return whole || "unknown error (non-serializable)";
+}
+
+/**
+ * Hit our backend to get a short-lived Retell access token.
+ * Throws on non-2xx so the caller can surface the error.
+ */
+export async function fetchRetellAccessToken(): Promise<string> {
+  const resp = await fetch(RETELL_TOKEN_ENDPOINT, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({}),
+  });
+
+  if (!resp.ok) {
+    const text = await resp.text().catch(() => "");
+    throw new Error(`token endpoint ${resp.status}: ${text || resp.statusText}`);
+  }
+
+  const data = (await resp.json()) as { access_token?: string };
+  if (!data.access_token) {
+    throw new Error("token endpoint returned no access_token");
+  }
+  return data.access_token;
 }
